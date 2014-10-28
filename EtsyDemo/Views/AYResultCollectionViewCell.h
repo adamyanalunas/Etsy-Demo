@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  AYResultCollectionViewCell.h
 //  EtsyDemo
 //
 //  Created by Adam Yanalunas on 10/27/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface AYResultCollectionViewCell : UICollectionViewCell
 
 @end
-

@@ -1,0 +1,17 @@
+//
+//  EtsyDemo-Prefix.pch
+//  EtsyDemo
+//
+//  Created by Adam Yanalunas on 10/27/14.
+//  Copyright (c) 2014 Adam Yanalunas. All rights reserved.
+//
+
+#ifndef EtsyDemo_PrefixHeader_pch
+#define EtsyDemo_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "AYKit.h"
+
+#endif
