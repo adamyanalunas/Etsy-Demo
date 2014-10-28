@@ -7,14 +7,17 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "AYAPI.h"
 #import "AYCollectionViewController.h"
 #import "AYListingCollection.h"
+#import "AYListingImage.h"
+#import "AYResultCollectionViewCell.h"
 
 
 @interface AYCollectionViewController ()
 
-@property (nonatomic, strong) NSMutableArray *results;
+@property (nonatomic, strong) NSArray *results;
 
 @end
 
@@ -116,7 +119,8 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
 {
     AYAPISuccess success = ^(NSURLSessionDataTask *task, id responseObject) {
         AYListingCollection *collection = [AYListingCollection listingCollectionFromResults:responseObject[@"results"]];
-        NSLog(@"%@", collection);
+        self.results = collection.listings;
+        [self.collectionView reloadData];
     };
     
     AYAPIFailure failure = ^(NSURLSessionDataTask *task, NSError *error) {
@@ -129,18 +133,38 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.results.count;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.results[section][@"entries"] count];
+    return self.results.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    AYResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AYResultCollectionViewCellIdentifier" forIndexPath:indexPath];
     
-    // Configure the cell
+    [self configureCell:cell listing:self.results[indexPath.item]];
+    
+    return cell;
+}
+
+
+- (AYResultCollectionViewCell *)configureCell:(AYResultCollectionViewCell *)cell listing:(AYListing *)listing
+{
+    cell.titleLabel.text = listing.title;
+    __weak AYResultCollectionViewCell *weakCell = cell;
+    
+    NSURL *url = listing.mainImage.mediumURL;
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [cell.imageView setImageWithURLRequest:request
+                          placeholderImage:nil
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                       
+                                       weakCell.imageView.image = image;
+                                       [weakCell setNeedsLayout];
+                                       
+                                   } failure:nil];
     
     return cell;
 }

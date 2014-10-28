@@ -34,7 +34,11 @@
 #pragma mark - Endpoints
 - (NSURLSessionDataTask *)search:(NSString *)term success:(AYAPISuccess)successBlock failure:(AYAPIFailure)failureBlock;
 {
-    NSDictionary *params = @{@"api_key": API_KEY};
+    NSDictionary *params = @{
+                             @"api_key": API_KEY,
+                             @"includes": @"MainImage",
+                             @"fields": @"title,url"
+                             };
     NSURLSessionDataTask *op = [self GET:@"listings/active" parameters:params success:successBlock failure:failureBlock];
     
     return op;

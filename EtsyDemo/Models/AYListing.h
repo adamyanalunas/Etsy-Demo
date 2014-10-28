@@ -7,6 +7,7 @@
 //
 
 
+#import "AYListingImage.h"
 #import <Mantle/Mantle.h>
 
 
@@ -23,6 +24,9 @@ typedef NS_ENUM(NSInteger, AYListingStatus) {
 };
 
 
+@class AYListingImage;
+
+
 @interface AYListing : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, assign) NSInteger listingID;
@@ -31,5 +35,7 @@ typedef NS_ENUM(NSInteger, AYListingStatus) {
 @property (nonatomic, assign) NSInteger categoryID;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *listingDescription;
+@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) AYListingImage *mainImage;
 
 @end

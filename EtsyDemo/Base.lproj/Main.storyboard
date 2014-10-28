@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dw7-7W-YcV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -29,20 +30,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.4050297263" blue="0.79496071180000005" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PsR-8k-Mnm">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="AYResultCollectionViewCell" reuseIdentifier="AYResultCollectionViewCell" id="gRf-GN-e0a" customClass="AYResultCollectionViewCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AYResultCollectionViewCellIdentifier" id="gRf-GN-e0a" customClass="AYResultCollectionViewCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a07-lm-Cwj">
+                                            <rect key="frame" x="8" y="8" width="184" height="184"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48t-bQ-Dz6">
+                                            <rect key="frame" x="8" y="166" width="184" height="26"/>
+                                            <color key="backgroundColor" white="1" alpha="0.75" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="26" id="gXT-7t-pIV"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="48t-bQ-Dz6" firstAttribute="leading" secondItem="gRf-GN-e0a" secondAttribute="leadingMargin" id="39r-xp-vKd"/>
+                                    <constraint firstItem="a07-lm-Cwj" firstAttribute="top" secondItem="gRf-GN-e0a" secondAttribute="topMargin" id="EoK-HV-u7X"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="48t-bQ-Dz6" secondAttribute="bottom" id="Xfg-j8-suz"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="48t-bQ-Dz6" secondAttribute="trailing" id="dt7-VH-Y0V"/>
+                                    <constraint firstItem="a07-lm-Cwj" firstAttribute="leading" secondItem="gRf-GN-e0a" secondAttribute="leadingMargin" id="eD5-Rf-Dwk"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="a07-lm-Cwj" secondAttribute="bottom" id="loQ-En-be8"/>
+                                    <constraint firstAttribute="centerX" secondItem="48t-bQ-Dz6" secondAttribute="centerX" id="teX-FZ-vNC"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="a07-lm-Cwj" secondAttribute="trailing" id="twl-Z1-3tA"/>
+                                </constraints>
+                                <size key="customSize" width="200" height="200"/>
+                                <connections>
+                                    <outlet property="imageView" destination="a07-lm-Cwj" id="ddO-SI-UdY"/>
+                                    <outlet property="titleLabel" destination="48t-bQ-Dz6" id="1Qv-d7-nDc"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

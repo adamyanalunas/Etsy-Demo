@@ -19,6 +19,7 @@
 		663E72AC19FF5D7800C2555F /* AYAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72AB19FF5D7800C2555F /* AYAPI.m */; };
 		663E72AF19FF61B400C2555F /* AYListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72AE19FF61B400C2555F /* AYListing.m */; };
 		663E72B219FF65E500C2555F /* AYListingCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72B119FF65E500C2555F /* AYListingCollection.m */; };
+		663E72B519FF765200C2555F /* AYListingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72B419FF765200C2555F /* AYListingImage.m */; };
 		85C49029342D28827D370CDC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26599E1CE45B3224FF16EA68 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,8 @@
 		663E72AE19FF61B400C2555F /* AYListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYListing.m; sourceTree = "<group>"; };
 		663E72B019FF65E500C2555F /* AYListingCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYListingCollection.h; sourceTree = "<group>"; };
 		663E72B119FF65E500C2555F /* AYListingCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYListingCollection.m; sourceTree = "<group>"; };
+		663E72B319FF765200C2555F /* AYListingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYListingImage.h; sourceTree = "<group>"; };
+		663E72B419FF765200C2555F /* AYListingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYListingImage.m; sourceTree = "<group>"; };
 		BE63E86E39EF1B161B0AB1F5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +165,8 @@
 				663E72AE19FF61B400C2555F /* AYListing.m */,
 				663E72B019FF65E500C2555F /* AYListingCollection.h */,
 				663E72B119FF65E500C2555F /* AYListingCollection.m */,
+				663E72B319FF765200C2555F /* AYListingImage.h */,
+				663E72B419FF765200C2555F /* AYListingImage.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				66249E0D19FF4EFF008DEC12 /* AppDelegate.m in Sources */,
 				663E72AF19FF61B400C2555F /* AYListing.m in Sources */,
 				663E72A819FF563E00C2555F /* AYKit.m in Sources */,
+				663E72B519FF765200C2555F /* AYListingImage.m in Sources */,
 				66249E0A19FF4EFF008DEC12 /* main.m in Sources */,
 				663E72A519FF549400C2555F /* AYResultCollectionViewCell.m in Sources */,
 			);

@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 Adam Yanalunas. All rights reserved.
 //
 
+
 #import "AYResultCollectionViewCell.h"
+
 
 @implementation AYResultCollectionViewCell
 
