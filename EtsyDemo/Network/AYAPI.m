@@ -13,6 +13,13 @@
 #define API_ROOT [NSURL URLWithString:@"https://api.etsy.com/v2/"]
 
 
+@interface AYAPI ()
+
+- (NSString *)sanitizedSearchKeywords:(NSString *)term;
+
+@end
+
+
 @implementation AYAPI
 
 
@@ -31,11 +38,21 @@
 }
 
 
+#pragma mark - Heplers
+- (NSString *)sanitizedSearchKeywords:(NSString *)term
+{
+    // TODO: Regex sweep to clean up undesirables
+    NSArray *keywords = [term componentsSeparatedByString:@" "];
+    return (keywords.count ? [keywords componentsJoinedByString:@","] : nil);
+}
+
+
 #pragma mark - Endpoints
 // TODO: Implement builder instead of loosely-typed dictionary
 - (NSURLSessionDataTask *)search:(NSString *)term options:(NSDictionary *)options
 {
-    if (!options[@"success"]) return nil;
+    NSString *keywords = [self sanitizedSearchKeywords:term];
+    if (!keywords || !options[@"success"]) return nil;
     
     NSNumber *limit = options[@"limit"] ?: @25;
     NSNumber *offset = options[@"offset"] ?: @0;
@@ -47,6 +64,7 @@
     
     NSDictionary *params = @{
                              @"api_key"     : API_KEY,
+                             @"keywords"    : keywords,
                              @"limit"       : limit,
                              @"offset"      : offset,
                              @"includes"    : includes,
