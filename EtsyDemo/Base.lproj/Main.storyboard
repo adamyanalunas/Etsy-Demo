@@ -9,9 +9,11 @@
         <scene sceneID="KfG-gd-3xs">
             <objects>
                 <navigationController id="dw7-7W-YcV" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9wm-VZ-y0m">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="9wm-VZ-y0m">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.79607843137254897" green="0.3411764705882353" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="p7l-dc-7DN" kind="relationship" relationship="rootViewController" id="FIP-xq-sRk"/>
@@ -30,24 +32,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PsR-8k-Mnm">
-                            <size key="itemSize" width="200" height="200"/>
+                            <size key="itemSize" width="160" height="160"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="22" minY="22" maxX="22" maxY="22"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AYResultCollectionViewCellIdentifier" id="gRf-GN-e0a" customClass="AYResultCollectionViewCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a07-lm-Cwj">
-                                            <rect key="frame" x="8" y="8" width="184" height="184"/>
+                                            <rect key="frame" x="8" y="8" width="144" height="144"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48t-bQ-Dz6">
-                                            <rect key="frame" x="8" y="166" width="184" height="26"/>
+                                            <rect key="frame" x="8" y="126" width="144" height="26"/>
                                             <color key="backgroundColor" white="1" alpha="0.75" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="26" id="gXT-7t-pIV"/>
@@ -70,7 +72,7 @@
                                     <constraint firstAttribute="centerX" secondItem="48t-bQ-Dz6" secondAttribute="centerX" id="teX-FZ-vNC"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="a07-lm-Cwj" secondAttribute="trailing" id="twl-Z1-3tA"/>
                                 </constraints>
-                                <size key="customSize" width="200" height="200"/>
+                                <size key="customSize" width="160" height="160"/>
                                 <connections>
                                     <outlet property="imageView" destination="a07-lm-Cwj" id="ddO-SI-UdY"/>
                                     <outlet property="titleLabel" destination="48t-bQ-Dz6" id="1Qv-d7-nDc"/>
