@@ -14,18 +14,19 @@
 #import "AYListingImage.h"
 #import "AYLoadingOverlayViewController.h"
 #import "AYResultCollectionViewCell.h"
+#import "NSObject+AYDebounce.h"
 
 
 @interface AYCollectionViewController ()
 
 @property (nonatomic, strong) NSArray *results;
 
+- (NSString *)cellIdentifier;
+
 @end
 
 
 @implementation AYCollectionViewController
-
-static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
 
 
 #pragma mark Lifecycle
@@ -83,6 +84,10 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
 {
     self.title = @"Etsy!";
     self.results = NSMutableArray.array;
+    self.searchResults = @[];
+
+//    UISearchController *searchController = [UISearchController.alloc initWithSearchResultsController:self];
+//    searchController.searchResultsUpdater = self;
 }
 
 
@@ -93,7 +98,12 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+//    [self.collectionView registerClass:AYResultCollectionViewCell.class forCellWithReuseIdentifier:self.cellIdentifier];
+    
+    _searchBar = UISearchBar.new;
+    _searchBar.delegate = self;
+    _searchBar.showsCancelButton = YES;
+    self.navigationItem.titleView = _searchBar;
     
     [self getRecent];
 }
@@ -126,17 +136,30 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
     
     AYAPIFailure failure = ^(NSURLSessionDataTask *task, NSError *error) {
         [self AYLoadingHide];
-        NSLog(@"%@", error);
+        [self presentError:error];
     };
-    
-    [self AYLoadingShow];
     
     NSDictionary *options = @{
                               @"success": success,
                               @"failure": failure,
                               @"offset" : @(offset)
                               };
-    [AYAPI.supervisor search:term options:options];
+    NSURLSessionDataTask *task = [AYAPI.supervisor search:term options:options];
+    if (task)
+    {
+        [self AYLoadingShow];
+    }
+}
+
+
+- (void)presentError:(NSError *)error
+{
+    NSString *title = NSLocalizedString(@"etsy.search.failure.title", @"Title of search failure message");
+    NSString *message = NSLocalizedString(@"etsy.search.failure.message", @"Message shown when a search fails");
+    NSString *dismissTitle = NSLocalizedString(@"etsy.button.dismiss", @"Button title to dismiss alert");
+    
+    UIAlertView *alert = [UIAlertView.alloc initWithTitle:title message:message delegate:nil cancelButtonTitle:dismissTitle otherButtonTitles:nil];
+    [alert show];
 }
 
 
@@ -146,19 +169,22 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
     [self search:@"halloween" offset:0];
 }
 
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+#pragma mark - UICollectionViewDataSource methods
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return 1;
 }
 
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return self.results.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    AYResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AYResultCollectionViewCellIdentifier" forIndexPath:indexPath];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellID = (self.isSearching ? self.searchCellIdentifier : self.cellIdentifier);
+    AYResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
     [self configureCell:cell listing:self.results[indexPath.item]];
     
@@ -184,6 +210,40 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
     
     return cell;
 }
+
+
+#pragma mark - Search
+- (void)searchCurrentTerm
+{
+    [self search:self.searchBar.text offset:0];
+}
+
+
+- (NSString *)searchCellIdentifier
+{
+    static NSString *cellID;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cellID = @"AYResultCollectionViewSearchCellIdentifier";
+    });
+    
+    return cellID;
+}
+
+
+- (void)hideSearchFieldAnimated:(BOOL)animated
+{
+//    CGPoint offset = CGPointMake(0, CGRectGetHeight(self.searchDisplayController.searchBar.frame));
+//    [self.collectionView setContentOffset:offset animated:animated];
+}
+
+
+#pragma mark - UISearchBarDelegate methods
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self debounce:@selector(searchCurrentTerm) delay:.5];
+}
+
 
 #pragma mark <UICollectionViewDelegate>
 
@@ -215,5 +275,17 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
 	
 }
 */
+
+
+- (NSString *)cellIdentifier
+{
+    static NSString *cellID;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cellID = @"AYResultCollectionViewCellIdentifier";
+    });
+    
+    return cellID;
+}
 
 @end

@@ -52,7 +52,7 @@
 - (NSURLSessionDataTask *)search:(NSString *)term options:(NSDictionary *)options
 {
     NSString *keywords = [self sanitizedSearchKeywords:term];
-    if (!keywords || !options[@"success"]) return nil;
+    if (!keywords.length || !options[@"success"]) return nil;
     
     NSNumber *limit = options[@"limit"] ?: @25;
     NSNumber *offset = options[@"offset"] ?: @0;
