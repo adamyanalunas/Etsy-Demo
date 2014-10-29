@@ -20,6 +20,10 @@
 		663E72AF19FF61B400C2555F /* AYListing.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72AE19FF61B400C2555F /* AYListing.m */; };
 		663E72B219FF65E500C2555F /* AYListingCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72B119FF65E500C2555F /* AYListingCollection.m */; };
 		663E72B519FF765200C2555F /* AYListingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72B419FF765200C2555F /* AYListingImage.m */; };
+		663E72B71A0075BB00C2555F /* loading_animation.html in Resources */ = {isa = PBXBuildFile; fileRef = 663E72B61A0075BB00C2555F /* loading_animation.html */; };
+		663E72BA1A00762900C2555F /* AYLoadingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72B91A00762900C2555F /* AYLoadingOverlayViewController.m */; };
+		663E72C11A00794D00C2555F /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663E72C31A00794D00C2555F /* Loading.storyboard */; };
+		663E72CA1A00884800C2555F /* UIViewController+AYLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72C91A00884800C2555F /* UIViewController+AYLoading.m */; };
 		85C49029342D28827D370CDC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26599E1CE45B3224FF16EA68 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +66,16 @@
 		663E72B119FF65E500C2555F /* AYListingCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYListingCollection.m; sourceTree = "<group>"; };
 		663E72B319FF765200C2555F /* AYListingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYListingImage.h; sourceTree = "<group>"; };
 		663E72B419FF765200C2555F /* AYListingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYListingImage.m; sourceTree = "<group>"; };
+		663E72B61A0075BB00C2555F /* loading_animation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = loading_animation.html; sourceTree = "<group>"; };
+		663E72B81A00762900C2555F /* AYLoadingOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYLoadingOverlayViewController.h; sourceTree = "<group>"; };
+		663E72B91A00762900C2555F /* AYLoadingOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYLoadingOverlayViewController.m; sourceTree = "<group>"; };
+		663E72BD1A00792900C2555F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		663E72BE1A00792900C2555F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		663E72BF1A00793100C2555F /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		663E72C01A00793100C2555F /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Main.strings"; sourceTree = "<group>"; };
+		663E72C21A00794D00C2555F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Loading.storyboard; sourceTree = "<group>"; };
+		663E72C81A00884800C2555F /* UIViewController+AYLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AYLoading.h"; sourceTree = "<group>"; };
+		663E72C91A00884800C2555F /* UIViewController+AYLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AYLoading.m"; sourceTree = "<group>"; };
 		BE63E86E39EF1B161B0AB1F5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +126,7 @@
 				663E72A619FF563E00C2555F /* AYKit.h */,
 				663E72A719FF563E00C2555F /* AYKit.m */,
 				66249E3219FF5208008DEC12 /* Assets */,
+				663E72C41A00875D00C2555F /* Categories */,
 				66249E2D19FF51D0008DEC12 /* Controllers */,
 				66249E2E19FF51DC008DEC12 /* Models */,
 				66249E3119FF51F2008DEC12 /* Network */,
@@ -154,6 +169,8 @@
 			children = (
 				66249E3319FF533E008DEC12 /* AYCollectionViewController.h */,
 				66249E3419FF533E008DEC12 /* AYCollectionViewController.m */,
+				663E72B81A00762900C2555F /* AYLoadingOverlayViewController.h */,
+				663E72B91A00762900C2555F /* AYLoadingOverlayViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -185,6 +202,7 @@
 				663E72A419FF549400C2555F /* AYResultCollectionViewCell.m */,
 				66249E1619FF4EFF008DEC12 /* LaunchScreen.xib */,
 				66249E1119FF4EFF008DEC12 /* Main.storyboard */,
+				663E72C31A00794D00C2555F /* Loading.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,8 +220,18 @@
 			isa = PBXGroup;
 			children = (
 				66249E1419FF4EFF008DEC12 /* Images.xcassets */,
+				663E72B61A0075BB00C2555F /* loading_animation.html */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		663E72C41A00875D00C2555F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				663E72C81A00884800C2555F /* UIViewController+AYLoading.h */,
+				663E72C91A00884800C2555F /* UIViewController+AYLoading.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		81FE6E1B3B89F74376A6C7F8 /* Frameworks */ = {
@@ -308,6 +336,8 @@
 			files = (
 				66249E1319FF4EFF008DEC12 /* Main.storyboard in Resources */,
 				66249E1819FF4EFF008DEC12 /* LaunchScreen.xib in Resources */,
+				663E72B71A0075BB00C2555F /* loading_animation.html in Resources */,
+				663E72C11A00794D00C2555F /* Loading.storyboard in Resources */,
 				66249E1519FF4EFF008DEC12 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,7 +394,9 @@
 				66249E3519FF533E008DEC12 /* AYCollectionViewController.m in Sources */,
 				66249E0D19FF4EFF008DEC12 /* AppDelegate.m in Sources */,
 				663E72AF19FF61B400C2555F /* AYListing.m in Sources */,
+				663E72CA1A00884800C2555F /* UIViewController+AYLoading.m in Sources */,
 				663E72A819FF563E00C2555F /* AYKit.m in Sources */,
+				663E72BA1A00762900C2555F /* AYLoadingOverlayViewController.m in Sources */,
 				663E72B519FF765200C2555F /* AYListingImage.m in Sources */,
 				66249E0A19FF4EFF008DEC12 /* main.m in Sources */,
 				663E72A519FF549400C2555F /* AYResultCollectionViewCell.m in Sources */,
@@ -394,6 +426,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				66249E1219FF4EFF008DEC12 /* Base */,
+				663E72BE1A00792900C2555F /* es */,
+				663E72C01A00793100C2555F /* es-MX */,
 			);
 			name = Main.storyboard;
 			path = ..;
@@ -403,9 +437,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				66249E1719FF4EFF008DEC12 /* Base */,
+				663E72BD1A00792900C2555F /* es */,
+				663E72BF1A00793100C2555F /* es-MX */,
 			);
 			name = LaunchScreen.xib;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		663E72C31A00794D00C2555F /* Loading.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				663E72C21A00794D00C2555F /* Base */,
+			);
+			name = Loading.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

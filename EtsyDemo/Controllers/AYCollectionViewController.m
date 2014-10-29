@@ -12,6 +12,7 @@
 #import "AYCollectionViewController.h"
 #import "AYListingCollection.h"
 #import "AYListingImage.h"
+#import "AYLoadingOverlayViewController.h"
 #import "AYResultCollectionViewCell.h"
 
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) NSArray *results;
 
 @end
+
 
 @implementation AYCollectionViewController
 
@@ -81,20 +83,19 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
 {
     self.title = @"Etsy!";
     self.results = NSMutableArray.array;
-    [self getRecent];
 }
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // Do any additional setup after loading the view.
+    [self getRecent];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,12 +122,15 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
         AYListingCollection *collection = [AYListingCollection listingCollectionFromResults:responseObject[@"results"]];
         self.results = collection.listings;
         [self.collectionView reloadData];
+        [self AYLoadingHide];
     };
     
     AYAPIFailure failure = ^(NSURLSessionDataTask *task, NSError *error) {
+        [self AYLoadingHide];
         NSLog(@"%@", error);
     };
     
+    [self AYLoadingShow];
     [AYAPI.supervisor search:@"skull" success:success failure:failure];
 }
 

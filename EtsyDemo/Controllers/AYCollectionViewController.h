@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Adam Yanalunas. All rights reserved.
 //
 
+
+#import "UIViewController+AYLoading.h"
 #import <UIKit/UIKit.h>
 
 
