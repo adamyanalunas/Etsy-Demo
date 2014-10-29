@@ -115,8 +115,7 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
 
 
 #pragma mark - Networking
-//TODO: Die, die die!
-- (void)getRecent
+- (void)search:(NSString *)term offset:(NSInteger)offset
 {
     AYAPISuccess success = ^(NSURLSessionDataTask *task, id responseObject) {
         AYListingCollection *collection = [AYListingCollection listingCollectionFromResults:responseObject[@"results"]];
@@ -131,7 +130,20 @@ static NSString * const reuseIdentifier = @"AYResultCollectionViewCell";
     };
     
     [self AYLoadingShow];
-    [AYAPI.supervisor search:@"skull" success:success failure:failure];
+    
+    NSDictionary *options = @{
+                              @"success": success,
+                              @"failure": failure,
+                              @"offset" : @(offset)
+                              };
+    [AYAPI.supervisor search:term options:options];
+}
+
+
+//TODO: Die, die die!
+- (void)getRecent
+{
+    [self search:@"halloween" offset:0];
 }
 
 #pragma mark <UICollectionViewDataSource>

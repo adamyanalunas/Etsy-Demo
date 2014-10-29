@@ -18,7 +18,6 @@ typedef void (^AYAPIFailure)(NSURLSessionDataTask *task, NSError *error);
 
 + (instancetype)supervisor;
 
-- (NSURLSessionDataTask *)search:(NSString *)term success:(AYAPISuccess)successBlock failure:(AYAPIFailure)failureBlock;
 - (NSURLSessionDataTask *)search:(NSString *)term options:(NSDictionary *)options;
 //- (void)setAuthHeadersForUser:(LSQUser *)user;
 

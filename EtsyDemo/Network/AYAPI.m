@@ -32,24 +32,30 @@
 
 
 #pragma mark - Endpoints
-- (NSURLSessionDataTask *)search:(NSString *)term success:(AYAPISuccess)successBlock failure:(AYAPIFailure)failureBlock;
+// TODO: Implement builder instead of loosely-typed dictionary
+- (NSURLSessionDataTask *)search:(NSString *)term options:(NSDictionary *)options
 {
+    if (!options[@"success"]) return nil;
+    
+    NSNumber *limit = options[@"limit"] ?: @25;
+    NSNumber *offset = options[@"offset"] ?: @0;
+    NSString *includes = options[@"includes"] ?: @"MainImage";
+    NSString *fields = options[@"fields"] ?: @"title,url";
+    
+    AYAPISuccess successBlock = options[@"success"];
+    AYAPIFailure failureBlock = options[@"failure"];
+    
     NSDictionary *params = @{
-                             @"api_key": API_KEY,
-                             @"includes": @"MainImage",
-                             @"fields": @"title,url"
+                             @"api_key"     : API_KEY,
+                             @"limit"       : limit,
+                             @"offset"      : offset,
+                             @"includes"    : includes,
+                             @"fields"      : fields
                              };
+    
     NSURLSessionDataTask *op = [self GET:@"listings/active" parameters:params success:successBlock failure:failureBlock];
     
     return op;
-}
-
-
-- (NSURLSessionDataTask *)search:(NSString *)term options:(NSDictionary *)options
-{
-    if (!options[@"success"] || !options[@"failure"]) return nil;
-    
-    return [self search:term success:options[@"success"] failure:options[@"failure"]];
 }
 
 @end

@@ -19,5 +19,6 @@
 - (void)commonInit;
 - (AYResultCollectionViewCell *)configureCell:(AYResultCollectionViewCell *)cell listing:(AYListing *)listing;
 - (void)getRecent;
+- (void)search:(NSString *)term offset:(NSInteger)offset;
 
 @end
