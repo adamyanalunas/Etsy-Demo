@@ -7,6 +7,7 @@
 //
 
 
+#import <Masonry/Masonry.h>
 #import <objc/runtime.h>
 #import "UIViewController+AYLoading.h"
 
@@ -34,6 +35,10 @@ NSString *const AYLoadingVCPropertyKey = @"AYLoadingVCPropertyKey";
     [self AYLoadingSetup];
     [self addChildViewController:self.AYLoadingVC];
     [self.view addSubview:self.AYLoadingVC.view];
+    
+    [self.AYLoadingVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.AYLoadingVC.view.superview);
+    }];
 }
 
 

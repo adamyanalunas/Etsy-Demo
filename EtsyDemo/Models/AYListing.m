@@ -35,12 +35,6 @@
 }
 
 
-//+ (NSValueTransformer *)imagesJSONTransformer
-//{
-//    return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:AYListingImage.class];
-//}
-
-
 #pragma mark - Properties
 - (NSString *)description
 {
