@@ -25,6 +25,7 @@
 - (void)getRecent;
 - (void)presentError:(NSError *)error;
 - (void)requestNextBatch;
+- (void)resetSearch;
 - (void)search:(NSString *)term offset:(NSInteger)offset;
 
 @end

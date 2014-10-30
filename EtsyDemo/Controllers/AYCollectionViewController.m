@@ -87,9 +87,6 @@
     self.searchResults = @[];
     self.loading = NO;
     self.batchSize = 30;
-
-//    UISearchController *searchController = [UISearchController.alloc initWithSearchResultsController:self];
-//    searchController.searchResultsUpdater = self;
 }
 
 
@@ -135,9 +132,7 @@
     // TODO: This doesn't belong here
     if (self.results.count && ![self.currentSearchTerm isEqualToString:term])
     {
-        NSIndexPath *firstItem = [NSIndexPath indexPathForItem:0 inSection:0];
-        [self.collectionView scrollToItemAtIndexPath:firstItem atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
-        self.results = @[];
+        [self resetSearch];
     }
     
     AYAPISuccess success = ^(NSURLSessionDataTask *task, id responseObject) {
@@ -265,6 +260,14 @@
 }
 
 
+- (void)resetSearch
+{
+    NSIndexPath *firstItem = [NSIndexPath indexPathForItem:0 inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:firstItem atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    self.results = @[];
+}
+
+
 - (void)hideSearchFieldAnimated:(BOOL)animated
 {
 //    CGPoint offset = CGPointMake(0, CGRectGetHeight(self.searchDisplayController.searchBar.frame));
@@ -277,6 +280,15 @@
 {
     if (!searchText.length) return;
     [self debounce:@selector(searchCurrentTerm) delay:.5];
+}
+
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = @"";
+    [searchBar resignFirstResponder];
+    [self resetSearch];
+    [self.collectionView reloadData];
 }
 
 
