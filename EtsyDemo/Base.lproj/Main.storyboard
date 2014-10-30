@@ -77,6 +77,7 @@
                                 <connections>
                                     <outlet property="imageView" destination="a07-lm-Cwj" id="ddO-SI-UdY"/>
                                     <outlet property="titleLabel" destination="48t-bQ-Dz6" id="1Qv-d7-nDc"/>
+                                    <segue destination="Hkm-6Z-om4" kind="show" identifier="ShowListingSegue" id="cr1-PC-ac5"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -90,6 +91,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Puu-pF-GEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="805" y="128"/>
+        </scene>
+        <!--Listing View Controller-->
+        <scene sceneID="R3T-Bx-h4m">
+            <objects>
+                <viewController id="Hkm-6Z-om4" customClass="AYListingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NIy-YB-FJY"/>
+                        <viewControllerLayoutGuide type="bottom" id="axt-Fm-6Ae"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j3m-o9-GlC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCv-DH-1DZ">
+                                <rect key="frame" x="16" y="64" width="568" height="44"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q9k-zI-gCv">
+                                        <rect key="frame" x="22" y="10" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="IIH-zB-a5a"/>
+                                            <constraint firstAttribute="height" constant="64" id="LvV-uS-i72"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5RJ-5x-bGA">
+                                        <rect key="frame" x="102" y="0.0" width="466" height="28"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Name of store selling listing"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="M1t-TQ-6vm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gk1-qc-jSj">
+                                        <rect key="frame" x="102" y="23" width="466" height="21"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Geographic location of store"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="NbE-l8-WCf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="5RJ-5x-bGA" firstAttribute="top" secondItem="aCv-DH-1DZ" secondAttribute="top" id="6Bg-Ga-jXd"/>
+                                    <constraint firstAttribute="trailing" secondItem="5RJ-5x-bGA" secondAttribute="trailing" id="8Do-N9-v78"/>
+                                    <constraint firstItem="Gk1-qc-jSj" firstAttribute="leading" secondItem="q9k-zI-gCv" secondAttribute="trailing" constant="16" id="JFw-BQ-UML"/>
+                                    <constraint firstItem="5RJ-5x-bGA" firstAttribute="leading" secondItem="q9k-zI-gCv" secondAttribute="trailing" constant="16" id="Nf3-8J-0J3"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gk1-qc-jSj" secondAttribute="trailing" id="nbk-HQ-KRJ"/>
+                                    <constraint firstAttribute="height" constant="44" id="omX-BU-Qx4"/>
+                                    <constraint firstItem="Gk1-qc-jSj" firstAttribute="top" secondItem="5RJ-5x-bGA" secondAttribute="bottom" constant="-5" id="tON-3I-wDO"/>
+                                    <constraint firstItem="q9k-zI-gCv" firstAttribute="leading" secondItem="aCv-DH-1DZ" secondAttribute="leading" constant="22" id="uFE-Iv-yhT"/>
+                                    <constraint firstItem="q9k-zI-gCv" firstAttribute="top" secondItem="aCv-DH-1DZ" secondAttribute="top" constant="10" id="wY5-Kh-QLJ"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gTY-8S-lUO"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="aCv-DH-1DZ" secondAttribute="trailing" id="3uJ-ae-rd8"/>
+                            <constraint firstItem="aCv-DH-1DZ" firstAttribute="top" secondItem="NIy-YB-FJY" secondAttribute="bottom" id="40b-bd-EgF"/>
+                            <constraint firstItem="aCv-DH-1DZ" firstAttribute="leading" secondItem="j3m-o9-GlC" secondAttribute="leadingMargin" id="PHO-kZ-vM3"/>
+                            <constraint firstItem="aCv-DH-1DZ" firstAttribute="leading" secondItem="j3m-o9-GlC" secondAttribute="leadingMargin" id="oPu-Ot-7dS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aCv-DH-1DZ" secondAttribute="trailing" id="uT2-JV-b1c"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="shopLocationLabel" destination="Gk1-qc-jSj" id="2ke-JU-tSh"/>
+                        <outlet property="shopLogo" destination="q9k-zI-gCv" id="7Ca-fg-9Ku"/>
+                        <outlet property="shopNameLabel" destination="5RJ-5x-bGA" id="MfZ-YL-j2L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HA0-BL-hPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="805" y="786"/>
         </scene>
     </scenes>
 </document>

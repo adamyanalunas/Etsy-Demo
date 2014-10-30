@@ -57,7 +57,7 @@
     NSNumber *limit = options[@"limit"] ?: @25;
     NSNumber *offset = options[@"offset"] ?: @0;
     NSString *includes = options[@"includes"] ?: @"MainImage";
-    NSString *fields = options[@"fields"] ?: @"title,url";
+    NSString *fields = options[@"fields"] ?: @"listing_id,title,url";
     
     AYAPISuccess successBlock = options[@"success"];
     AYAPIFailure failureBlock = options[@"failure"];
@@ -75,5 +75,25 @@
     
     return op;
 }
+
+
+- (NSURLSessionDataTask *)listing:(NSUInteger)listingID options:(NSDictionary *)options
+{
+    if (!options[@"success"]) return nil;
+    
+    AYAPISuccess successBlock = options[@"success"];
+    AYAPIFailure failureBlock = options[@"failure"];
+    
+    NSString *includes = options[@"includes"] ?: @"MainImage,Images,Shop,User";
+    NSDictionary *params = @{
+                             @"api_key" : API_KEY,
+                             @"includes": includes
+                             };
+    
+    NSURLSessionDataTask *op = [self GET:[NSString stringWithFormat:@"listings/%i", listingID] parameters:params success:successBlock failure:failureBlock];
+    
+    return op;
+}
+
 
 @end
