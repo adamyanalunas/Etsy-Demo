@@ -12,4 +12,14 @@
 
 @implementation AYResultCollectionViewCell
 
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    
+    self.imageView.image = nil;
+    self.titleLabel.text = @"";
+}
+
+
 @end

@@ -85,6 +85,8 @@
     self.title = @"Etsy!";
     self.results = NSMutableArray.array;
     self.searchResults = @[];
+    self.loading = NO;
+    self.batchSize = 30;
 
 //    UISearchController *searchController = [UISearchController.alloc initWithSearchResultsController:self];
 //    searchController.searchResultsUpdater = self;
@@ -127,28 +129,52 @@
 #pragma mark - Networking
 - (void)search:(NSString *)term offset:(NSInteger)offset
 {
+    // TODO: Handle canceling existing requests
+    if (self.isLoading) return;
+    
+    // TODO: This doesn't belong here
+    if (self.results.count && ![self.currentSearchTerm isEqualToString:term])
+    {
+        NSIndexPath *firstItem = [NSIndexPath indexPathForItem:0 inSection:0];
+        [self.collectionView scrollToItemAtIndexPath:firstItem atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+        self.results = @[];
+    }
+    
     AYAPISuccess success = ^(NSURLSessionDataTask *task, id responseObject) {
         AYListingCollection *collection = [AYListingCollection listingCollectionFromResults:responseObject[@"results"]];
-        self.results = collection.listings;
+        self.results = [self.results arrayByAddingObjectsFromArray:collection.listings];
         [self.collectionView reloadData];
         [self AYLoadingHide];
+        self.loading = NO;
     };
     
     AYAPIFailure failure = ^(NSURLSessionDataTask *task, NSError *error) {
         [self AYLoadingHide];
         [self presentError:error];
+        self.loading = NO;
     };
     
     NSDictionary *options = @{
                               @"success": success,
                               @"failure": failure,
+                              @"limit"  : @(self.batchSize),
                               @"offset" : @(offset)
                               };
     NSURLSessionDataTask *task = [AYAPI.supervisor search:term options:options];
     if (task)
     {
+        self.currentSearchTerm = term;
+        self.loading = YES;
         [self AYLoadingShow];
     }
+}
+
+
+- (void)requestNextBatch
+{
+    NSInteger cellTotal = [self.collectionView numberOfItemsInSection:0];
+    NSInteger offset = floor(cellTotal/self.batchSize);
+    [self search:self.currentSearchTerm offset:offset];
 }
 
 
@@ -185,6 +211,14 @@
 {
     NSString *cellID = (self.isSearching ? self.searchCellIdentifier : self.cellIdentifier);
     AYResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+
+    if (!self.results.count || self.results.count < indexPath.item) return cell;
+
+    // TODO: Too brittle/dependent
+    if (indexPath.item == self.results.count-1)
+    {
+        [self requestNextBatch];
+    }
     
     [self configureCell:cell listing:self.results[indexPath.item]];
     
@@ -241,6 +275,7 @@
 #pragma mark - UISearchBarDelegate methods
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    if (!searchText.length) return;
     [self debounce:@selector(searchCurrentTerm) delay:.5];
 }
 

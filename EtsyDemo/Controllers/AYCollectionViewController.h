@@ -16,16 +16,21 @@
 
 @interface AYCollectionViewController : UICollectionViewController
 
+@property (nonatomic, assign) NSInteger batchSize;
+@property (nonatomic, copy) NSString *currentSearchTerm;
+@property (nonatomic, assign, getter=isLoading) BOOL loading;
+
 - (void)commonInit;
 - (AYResultCollectionViewCell *)configureCell:(AYResultCollectionViewCell *)cell listing:(AYListing *)listing;
 - (void)getRecent;
 - (void)presentError:(NSError *)error;
+- (void)requestNextBatch;
 - (void)search:(NSString *)term offset:(NSInteger)offset;
 
 @end
 
 
-@interface AYCollectionViewController () <UISearchDisplayDelegate, UISearchBarDelegate, UISearchResultsUpdating>
+@interface AYCollectionViewController () <UISearchDisplayDelegate, UISearchBarDelegate>
 
 @property (nonatomic, readonly) BOOL isSearching;
 @property (nonatomic, strong) UISearchBar *searchBar;
