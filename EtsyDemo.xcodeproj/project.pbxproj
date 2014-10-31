@@ -18,6 +18,7 @@
 		663CEBD51A00C58C0031DD71 /* NSObject+AYDebounce.m in Sources */ = {isa = PBXBuildFile; fileRef = 663CEBD41A00C58C0031DD71 /* NSObject+AYDebounce.m */; };
 		663CEBD81A0215460031DD71 /* AYListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 663CEBD71A0215460031DD71 /* AYListingViewController.m */; };
 		663CEBDD1A0226C80031DD71 /* AYShop.m in Sources */ = {isa = PBXBuildFile; fileRef = 663CEBDC1A0226C80031DD71 /* AYShop.m */; };
+		663CEBE01A0367E30031DD71 /* AYSpringyCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 663CEBDF1A0367E30031DD71 /* AYSpringyCollectionViewFlowLayout.m */; };
 		663E72A519FF549400C2555F /* AYResultCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72A419FF549400C2555F /* AYResultCollectionViewCell.m */; };
 		663E72A819FF563E00C2555F /* AYKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72A719FF563E00C2555F /* AYKit.m */; };
 		663E72AC19FF5D7800C2555F /* AYAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72AB19FF5D7800C2555F /* AYAPI.m */; };
@@ -64,6 +65,8 @@
 		663CEBD71A0215460031DD71 /* AYListingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYListingViewController.m; sourceTree = "<group>"; };
 		663CEBDB1A0226C80031DD71 /* AYShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYShop.h; sourceTree = "<group>"; };
 		663CEBDC1A0226C80031DD71 /* AYShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYShop.m; sourceTree = "<group>"; };
+		663CEBDE1A0367E30031DD71 /* AYSpringyCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYSpringyCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		663CEBDF1A0367E30031DD71 /* AYSpringyCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYSpringyCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		663E72A319FF549400C2555F /* AYResultCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYResultCollectionViewCell.h; sourceTree = "<group>"; };
 		663E72A419FF549400C2555F /* AYResultCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYResultCollectionViewCell.m; sourceTree = "<group>"; };
 		663E72A619FF563E00C2555F /* AYKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYKit.h; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				66249E1619FF4EFF008DEC12 /* LaunchScreen.xib */,
 				663E72C31A00794D00C2555F /* Loading.storyboard */,
 				66249E1119FF4EFF008DEC12 /* Main.storyboard */,
+				663CEBDE1A0367E30031DD71 /* AYSpringyCollectionViewFlowLayout.h */,
+				663CEBDF1A0367E30031DD71 /* AYSpringyCollectionViewFlowLayout.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				663E72BA1A00762900C2555F /* AYLoadingOverlayViewController.m in Sources */,
 				663CEBDD1A0226C80031DD71 /* AYShop.m in Sources */,
 				663E72B519FF765200C2555F /* AYListingImage.m in Sources */,
+				663CEBE01A0367E30031DD71 /* AYSpringyCollectionViewFlowLayout.m in Sources */,
 				66249E0A19FF4EFF008DEC12 /* main.m in Sources */,
 				663CEBD81A0215460031DD71 /* AYListingViewController.m in Sources */,
 				663E72A519FF549400C2555F /* AYResultCollectionViewCell.m in Sources */,

@@ -15,6 +15,7 @@
 #import "AYListingViewController.h"
 #import "AYLoadingOverlayViewController.h"
 #import "AYResultCollectionViewCell.h"
+#import "AYSpringyCollectionViewFlowLayout.h"
 #import "NSObject+AYDebounce.h"
 
 
@@ -143,6 +144,7 @@
         AYListingCollection *collection = [AYListingCollection listingCollectionFromResults:responseObject[@"results"]];
         self.results = [self.results arrayByAddingObjectsFromArray:collection.listings];
         [self.collectionView reloadData];
+        [((AYSpringyCollectionViewFlowLayout *)self.collectionViewLayout) resetLayout];
         [self AYLoadingHide];
         self.loading = NO;
     };
