@@ -13,6 +13,33 @@
 #define API_ROOT [NSURL URLWithString:@"https://api.etsy.com/v2/"]
 
 
+@interface AYAPIRequestConfiguration ()
+
+@property (nonatomic, copy) NSString *apiKey;
+
+@end
+
+
+@implementation AYAPIRequestConfiguration
+
+- (instancetype)init
+{
+    self = [super init];
+    if (!self) return nil;
+    
+    self.apiKey = API_KEY;
+    
+    self.limit = @25;
+    self.offset = @0;
+    self.includes = @[@"MainImage"];
+    self.fields = @[@"listing_id", @"title", @"url", @"price"];
+    
+    return self;
+}
+
+@end
+
+
 @interface AYAPI ()
 
 - (NSString *)sanitizedSearchKeywords:(NSString *)term;
@@ -48,49 +75,40 @@
 
 
 #pragma mark - Endpoints
-// TODO: Implement builder instead of loosely-typed dictionary
-- (NSURLSessionDataTask *)search:(NSString *)term options:(NSDictionary *)options
+- (NSURLSessionDataTask *)search:(NSString *)term configuration:(AYAPIRequestConfiguration *)configuration
 {
     NSString *keywords = [self sanitizedSearchKeywords:term];
-    if (!keywords.length || !options[@"success"]) return nil;
+    if (!keywords.length || !configuration.success) return nil;
     
-    NSNumber *limit = options[@"limit"] ?: @25;
-    NSNumber *offset = options[@"offset"] ?: @0;
-    NSString *includes = options[@"includes"] ?: @"MainImage";
-    NSString *fields = options[@"fields"] ?: @"listing_id,title,url,price";
-    
-    AYAPISuccess successBlock = options[@"success"];
-    AYAPIFailure failureBlock = options[@"failure"];
+    NSString *includes = [configuration.includes componentsJoinedByString:@","] ?: @"MainImage";
+    NSString *fields = [configuration.fields componentsJoinedByString:@","] ?: @"listing_id,title,url,price";
     
     NSDictionary *params = @{
-                             @"api_key"     : API_KEY,
+                             @"api_key"     : configuration.apiKey,
                              @"keywords"    : keywords,
-                             @"limit"       : limit,
-                             @"offset"      : offset,
+                             @"limit"       : configuration.limit,
+                             @"offset"      : configuration.offset,
                              @"includes"    : includes,
                              @"fields"      : fields
                              };
     
-    NSURLSessionDataTask *op = [self GET:@"listings/active" parameters:params success:successBlock failure:failureBlock];
+    NSURLSessionDataTask *op = [self GET:@"listings/active" parameters:params success:configuration.success failure:configuration.failure];
     
     return op;
 }
 
 
-- (NSURLSessionDataTask *)listing:(NSUInteger)listingID options:(NSDictionary *)options
+- (NSURLSessionDataTask *)listing:(NSUInteger)listingID configuration:(AYAPIRequestConfiguration *)configuration
 {
-    if (!options[@"success"]) return nil;
+    if (!configuration.success) return nil;
     
-    AYAPISuccess successBlock = options[@"success"];
-    AYAPIFailure failureBlock = options[@"failure"];
-    
-    NSString *includes = options[@"includes"] ?: @"MainImage,Images,Shop,User";
+    NSString *includes = [configuration.includes componentsJoinedByString:@","];
     NSDictionary *params = @{
                              @"api_key" : API_KEY,
                              @"includes": includes
                              };
     
-    NSURLSessionDataTask *op = [self GET:[NSString stringWithFormat:@"listings/%i", listingID] parameters:params success:successBlock failure:failureBlock];
+    NSURLSessionDataTask *op = [self GET:[NSString stringWithFormat:@"listings/%i", listingID] parameters:params success:configuration.success failure:configuration.failure];
     
     return op;
 }

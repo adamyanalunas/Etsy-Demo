@@ -153,13 +153,13 @@
         self.loading = NO;
     };
     
-    NSDictionary *options = @{
-                              @"success": success,
-                              @"failure": failure,
-                              @"limit"  : @(self.batchSize),
-                              @"offset" : @(offset)
-                              };
-    NSURLSessionDataTask *task = [AYAPI.supervisor search:term options:options];
+    AYAPIRequestConfiguration *config = AYAPIRequestConfiguration.new;
+    config.success = success;
+    config.failure = failure;
+    config.limit = @(self.batchSize);
+    config.offset = @(offset);
+    
+    NSURLSessionDataTask *task = [AYAPI.supervisor search:term configuration:config];
     if (task)
     {
         self.currentSearchTerm = term;

@@ -109,11 +109,12 @@
         [self AYLoadingHide];
     };
     
-    NSDictionary *options = @{
-                              @"success": success,
-                              @"failure": failure
-                              };
-    NSURLSessionDataTask *op = [AYAPI.supervisor listing:listingID options:options];
+    AYAPIRequestConfiguration *config = AYAPIRequestConfiguration.new;
+    config.includes = @[@"MainImage", @"Images", @"Shop", @"User"];
+    config.success = success;
+    config.failure = failure;
+    NSURLSessionDataTask *op = [AYAPI.supervisor listing:listingID configuration:config];
+    
     if (op)
     {
         [self AYLoadingShow];

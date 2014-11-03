@@ -14,12 +14,24 @@ typedef void (^AYAPISuccess)(NSURLSessionDataTask *task, id responseObject);
 typedef void (^AYAPIFailure)(NSURLSessionDataTask *task, NSError *error);
 
 
+@interface AYAPIRequestConfiguration : NSObject
+
+@property (nonatomic, copy) NSArray *includes;
+@property (nonatomic, copy) AYAPIFailure failure;
+@property (nonatomic, copy) NSArray *fields;
+@property (nonatomic, copy) NSArray *keywords;
+@property (nonatomic, copy) NSNumber *limit;
+@property (nonatomic, copy) NSNumber *offset;
+@property (nonatomic, copy) AYAPISuccess success;
+
+@end
+
+
 @interface AYAPI : AFHTTPSessionManager
 
 + (instancetype)supervisor;
 
-- (NSURLSessionDataTask *)listing:(NSUInteger)listingID options:(NSDictionary *)options;
-- (NSURLSessionDataTask *)search:(NSString *)term options:(NSDictionary *)options;
-//- (void)setAuthHeadersForUser:(LSQUser *)user;
+- (NSURLSessionDataTask *)listing:(NSUInteger)listingID configuration:(AYAPIRequestConfiguration *)configuration;
+- (NSURLSessionDataTask *)search:(NSString *)term configuration:(AYAPIRequestConfiguration *)configuration;
 
 @end
