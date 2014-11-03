@@ -29,13 +29,14 @@ typedef NS_ENUM(NSInteger, AYListingStatus) {
 
 @interface AYListing : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, assign) NSInteger listingID;
-@property (nonatomic, assign) AYListingStatus status;
-@property (nonatomic, assign) NSInteger userID;
 @property (nonatomic, assign) NSInteger categoryID;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *listingDescription;
 @property (nonatomic, strong) NSArray *images;
+@property (nonatomic, copy) NSString *listingDescription;
+@property (nonatomic, assign) NSInteger listingID;
 @property (nonatomic, strong) AYListingImage *mainImage;
+@property (nonatomic, strong) NSString *price;
+@property (nonatomic, assign) AYListingStatus status;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, assign) NSInteger userID;
 
 @end

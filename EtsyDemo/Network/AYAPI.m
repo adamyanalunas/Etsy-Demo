@@ -57,7 +57,7 @@
     NSNumber *limit = options[@"limit"] ?: @25;
     NSNumber *offset = options[@"offset"] ?: @0;
     NSString *includes = options[@"includes"] ?: @"MainImage";
-    NSString *fields = options[@"fields"] ?: @"listing_id,title,url";
+    NSString *fields = options[@"fields"] ?: @"listing_id,title,url,price";
     
     AYAPISuccess successBlock = options[@"success"];
     AYAPIFailure failureBlock = options[@"failure"];

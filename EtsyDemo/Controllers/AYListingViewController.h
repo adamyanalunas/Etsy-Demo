@@ -15,10 +15,11 @@
 @interface AYListingViewController : UIViewController
 
 @property (nonatomic, strong) AYListing *listing;
+@property (weak, nonatomic) IBOutlet UIImageView *listingImageView;
+@property (weak, nonatomic) IBOutlet UILabel *listingNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *listingPriceLabel;
 @property (nonatomic, strong) AYShop *shop;
-@property (weak, nonatomic) IBOutlet UIImageView *shopLogo;
 @property (weak, nonatomic) IBOutlet UILabel *shopNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *shopLocationLabel;
 
 + (instancetype)viewControllerWithListing:(AYListing *)listing;
 

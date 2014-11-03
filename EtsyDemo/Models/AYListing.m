@@ -23,6 +23,7 @@
              @"listingDescription"  : @"description",
              @"listingID"           : @"listing_id",
              @"mainImage"           : @"MainImage",
+             @"price"               : @"price",
              @"title"               : @"title",
              @"userID"              : @"user_id"
              };
