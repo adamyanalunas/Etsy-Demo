@@ -75,6 +75,24 @@
 
 
 #pragma mark - Endpoints
+- (NSURLSessionDataTask *)trendingWithConfiguration:(AYAPIRequestConfiguration *)configuration
+{
+    NSString *includes = [configuration.includes componentsJoinedByString:@","] ?: @"MainImage";
+    NSString *fields = [configuration.fields componentsJoinedByString:@","] ?: @"listing_id,title,url,price";
+    
+    NSDictionary *params = @{
+                             @"api_key": configuration.apiKey,
+                             @"limit"       : configuration.limit,
+                             @"offset"      : configuration.offset,
+                             @"includes"    : includes,
+                             @"fields"      : fields
+                             };
+    NSURLSessionDataTask *op = [self GET:@"listings/trending" parameters:params success:configuration.success failure:configuration.failure];
+    
+    return op;
+}
+
+
 - (NSURLSessionDataTask *)search:(NSString *)term configuration:(AYAPIRequestConfiguration *)configuration
 {
     NSString *keywords = [self sanitizedSearchKeywords:term];

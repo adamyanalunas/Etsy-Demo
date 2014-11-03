@@ -31,6 +31,7 @@ typedef void (^AYAPIFailure)(NSURLSessionDataTask *task, NSError *error);
 
 + (instancetype)supervisor;
 
+- (NSURLSessionDataTask *)trendingWithConfiguration:(AYAPIRequestConfiguration *)configuration;
 - (NSURLSessionDataTask *)listing:(NSUInteger)listingID configuration:(AYAPIRequestConfiguration *)configuration;
 - (NSURLSessionDataTask *)search:(NSString *)term configuration:(AYAPIRequestConfiguration *)configuration;
 
