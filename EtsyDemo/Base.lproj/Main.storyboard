@@ -186,41 +186,5 @@
             </objects>
             <point key="canvasLocation" x="805" y="786"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="26f-Tw-CSE">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="8sx-YY-naW" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PlI-GB-eBI"/>
-                        <viewControllerLayoutGuide type="bottom" id="lqA-v4-Nw3"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cu8-kJ-gSy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DQc-6L-kry" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="IYP-op-XEf">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="STR-sr-J4I" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hmu-40-Bcf"/>
-                        <viewControllerLayoutGuide type="bottom" id="rAG-Eu-n1F"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ieq-cJ-qKm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vqe-DL-pkO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
 </document>
