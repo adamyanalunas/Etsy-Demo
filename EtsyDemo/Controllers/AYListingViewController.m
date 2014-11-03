@@ -7,6 +7,7 @@
 //
 
 
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "AYAPI.h"
 #import "AYListingViewController.h"
 #import "AYShop.h"
@@ -15,6 +16,8 @@
 
 @interface AYListingViewController ()
 
+- (NSString *)listingName;
+- (NSString *)listngPrice;
 - (NSString *)shopName;
 
 @end
@@ -49,10 +52,37 @@
 - (void)setup
 {
     self.shopNameLabel.text = [self shopName];
+    self.listingNameLabel.text = [self listingName];
+    self.listingPriceLabel.text = [self listngPrice];
+    
+    NSURL *url = self.listing.mainImage.fullURL;
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    __weak typeof(self) weakSelf = self;
+    [self.listingImageView setImageWithURLRequest:request
+                              placeholderImage:nil
+                                   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                       
+                                       weakSelf.listingImageView.image = image;
+                                       [weakSelf.listingImageView setNeedsLayout];
+                                   } failure:nil];
 }
 
 
 #pragma mark - Helpers
+- (NSString *)listingName
+{
+    return self.listing.title;
+}
+
+
+- (NSString *)listngPrice
+{
+    NSNumberFormatter *formatter = NSNumberFormatter.new;
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    return [formatter stringFromNumber:@([self.listing.price doubleValue])];
+}
+
+
 - (NSString *)shopName
 {
     return self.shop.name;
