@@ -20,9 +20,12 @@
 
 @interface AYCollectionViewController ()
 
+@property (nonatomic, assign, getter=isSearching) BOOL searching;
 @property (nonatomic, strong) NSArray *results;
 
 - (NSString *)cellIdentifier;
+- (AYAPIRequestConfiguration *)requestConfigurationUsingOffset:(NSInteger)offset;
+- (void)trendingWithOffset:(NSInteger)offset;
 
 @end
 
@@ -31,16 +34,6 @@
 
 
 #pragma mark Lifecycle
-//- (instancetype)init
-//{
-//    self = [super init];
-//    if (!self) return nil;
-//    
-//    [self commonInit];
-//    return self;
-//}
-//
-//
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -61,26 +54,6 @@
 }
 
 
-//- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (!self) return nil;
-//    
-//    [self commonInit];
-//    return self;
-//}
-//
-//
-//+ (instancetype)new
-//{
-//    AYCollectionViewController *controller = [super new];
-//    if (!controller) return nil;
-//    
-//    [controller commonInit];
-//    return controller;
-//}
-
-
 - (void)commonInit
 {
     self.title = @"Etsy!";
@@ -88,15 +61,13 @@
     self.searchResults = @[];
     self.loading = NO;
     self.batchSize = 30;
+    self.searching = NO;
 }
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
     
 //    [self.collectionView registerClass:AYResultCollectionViewCell.class forCellWithReuseIdentifier:self.cellIdentifier];
     
@@ -108,16 +79,10 @@
     [self getRecent];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"ShowListingSegue"])
     {
         NSIndexPath *selectedItem = [self.collectionView indexPathsForSelectedItems][0];
@@ -128,17 +93,8 @@
 
 
 #pragma mark - Networking
-- (void)search:(NSString *)term offset:(NSInteger)offset
+- (AYAPIRequestConfiguration *)requestConfigurationUsingOffset:(NSInteger)offset
 {
-    // TODO: Handle canceling existing requests
-    if (self.isLoading) return;
-    
-    // TODO: This doesn't belong here
-    if (self.results.count && ![self.currentSearchTerm isEqualToString:term])
-    {
-        [self resetSearch];
-    }
-    
     AYAPISuccess success = ^(NSURLSessionDataTask *task, id responseObject) {
         AYListingCollection *collection = [AYListingCollection listingCollectionFromResults:responseObject[@"results"]];
         self.results = [self.results arrayByAddingObjectsFromArray:collection.listings];
@@ -159,6 +115,24 @@
     config.limit = @(self.batchSize);
     config.offset = @(offset);
     
+    return config;
+}
+
+
+- (void)search:(NSString *)term offset:(NSInteger)offset
+{
+    // TODO: Handle canceling existing requests
+    if (self.isLoading) return;
+    
+    self.searching = YES;
+    
+    // TODO: This doesn't belong here
+    if (self.results.count && ![self.currentSearchTerm isEqualToString:term])
+    {
+        [self resetSearch];
+    }
+    
+    AYAPIRequestConfiguration *config = [self requestConfigurationUsingOffset:offset];
     NSURLSessionDataTask *task = [AYAPI.supervisor search:term configuration:config];
     if (task)
     {
@@ -169,11 +143,34 @@
 }
 
 
+- (void)trendingWithOffset:(NSInteger)offset
+{
+    // TODO: Handle canceling existing requests
+    if (self.isLoading) return;
+    
+    AYAPIRequestConfiguration *config = [self requestConfigurationUsingOffset:offset];
+    NSURLSessionDataTask *task = [AYAPI.supervisor trendingWithConfiguration:config];
+    if (task)
+    {
+        self.loading = YES;
+        [self AYLoadingShow];
+    }
+}
+
+
 - (void)requestNextBatch
 {
     NSInteger cellTotal = [self.collectionView numberOfItemsInSection:0];
     NSInteger offset = floor(cellTotal/self.batchSize);
-    [self search:self.currentSearchTerm offset:offset];
+    
+    if (self.isSearching)
+    {
+        [self search:self.currentSearchTerm offset:offset];
+    }
+    else
+    {
+        [self trendingWithOffset:offset];
+    }
 }
 
 
@@ -188,10 +185,9 @@
 }
 
 
-//TODO: Die, die die!
 - (void)getRecent
 {
-    [self search:@"halloween" offset:0];
+    [self trendingWithOffset:0];
 }
 
 #pragma mark - UICollectionViewDataSource methods
@@ -208,7 +204,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellID = (self.isSearching ? self.searchCellIdentifier : self.cellIdentifier);
+    NSString *cellID = self.cellIdentifier;
     AYResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
 
     if (!self.results.count || self.results.count < indexPath.item) return cell;
@@ -272,13 +268,6 @@
 }
 
 
-- (void)hideSearchFieldAnimated:(BOOL)animated
-{
-//    CGPoint offset = CGPointMake(0, CGRectGetHeight(self.searchDisplayController.searchBar.frame));
-//    [self.collectionView setContentOffset:offset animated:animated];
-}
-
-
 #pragma mark - UISearchBarDelegate methods
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
@@ -294,38 +283,6 @@
     [self resetSearch];
     [self.collectionView reloadData];
 }
-
-
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 
 - (NSString *)cellIdentifier

@@ -33,12 +33,9 @@
 
 @interface AYCollectionViewController () <UISearchDisplayDelegate, UISearchBarDelegate>
 
-@property (nonatomic, readonly) BOOL isSearching;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) NSArray *searchResults;
 
-- (void)hideSearchFieldAnimated:(BOOL)animated;
-- (NSString *)searchCellIdentifier;
 - (void)searchCurrentTerm;
 
 @end
