@@ -18,6 +18,7 @@
 
 - (NSString *)listingName;
 - (NSString *)listngPrice;
+- (NSDictionary *)shopDataFromResults:(NSDictionary *)results;
 - (NSString *)shopName;
 
 @end
@@ -97,8 +98,7 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         NSError *err;
         
-        // TODO: Wow. I wrote this and I'm impressed with how fragile it is.
-        strongSelf.shop = [MTLJSONAdapter modelOfClass:AYShop.class fromJSONDictionary:responseObject[@"results"][0][@"Shop"] error:&err];
+        strongSelf.shop = [MTLJSONAdapter modelOfClass:AYShop.class fromJSONDictionary:[self shopDataFromResults:responseObject] error:&err];
         
         [self setup];
         [self AYLoadingHide];
@@ -119,6 +119,13 @@
     {
         [self AYLoadingShow];
     }
+}
+
+
+- (NSDictionary *)shopDataFromResults:(NSDictionary *)results
+{
+    // TODO: Wow. I wrote this and I'm impressed with how fragile it is.
+    return results[@"results"][0][@"Shop"];
 }
 
 
