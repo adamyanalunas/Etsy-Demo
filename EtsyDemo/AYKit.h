@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define API_KEY @"liwecjs0c3ssk6let4p1wqt9"
+#define API_KEY @"3u06htnxxm4gfc7hf8eb7h8x"
 
 @interface AYKit : NSObject
 
