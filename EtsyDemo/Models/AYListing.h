@@ -39,4 +39,6 @@ typedef NS_ENUM(NSInteger, AYListingStatus) {
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) NSInteger userID;
 
+- (NSString *)formattedPrice;
+
 @end

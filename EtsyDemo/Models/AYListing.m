@@ -36,6 +36,15 @@
 }
 
 
+#pragma mark - Helpers
+- (NSString *)formattedPrice
+{
+    NSNumberFormatter *formatter = NSNumberFormatter.new;
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    return [formatter stringFromNumber:@([_price doubleValue])];
+}
+
+
 #pragma mark - Properties
 - (NSString *)description
 {

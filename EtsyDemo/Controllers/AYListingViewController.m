@@ -16,8 +16,8 @@
 
 @interface AYListingViewController ()
 
+- (NSString *)formattedListingPrice;
 - (NSString *)listingName;
-- (NSString *)listngPrice;
 - (NSDictionary *)shopDataFromResults:(NSDictionary *)results;
 - (NSString *)shopName;
 
@@ -54,7 +54,7 @@
 {
     self.shopNameLabel.text = [self shopName];
     self.listingNameLabel.text = [self listingName];
-    self.listingPriceLabel.text = [self listngPrice];
+    self.listingPriceLabel.text = [self formattedListingPrice];
     
     NSURL *url = self.listing.mainImage.fullURL;
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -70,17 +70,15 @@
 
 
 #pragma mark - Helpers
-- (NSString *)listingName
+- (NSString *)formattedListingPrice
 {
-    return self.listing.title;
+    return self.listing.formattedPrice;
 }
 
 
-- (NSString *)listngPrice
+- (NSString *)listingName
 {
-    NSNumberFormatter *formatter = NSNumberFormatter.new;
-    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
-    return [formatter stringFromNumber:@([self.listing.price doubleValue])];
+    return self.listing.title;
 }
 
 
