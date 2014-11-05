@@ -113,6 +113,7 @@
     AYAPIRequestConfiguration *config = AYAPIRequestConfiguration.new;
     config.success = success;
     config.failure = failure;
+    config.includes = @[@"MainImage", @"Shop"];
     config.limit = @(self.batchSize);
     config.offset = @(offset);
     
@@ -225,7 +226,9 @@
 - (AYResultCollectionViewCell *)configureCell:(AYResultCollectionViewCell *)cell listing:(AYListing *)listing
 {
     cell.titleLabel.text = listing.title;
+    cell.shopLabel.text  = listing.shop.name;
     cell.priceLabel.text = listing.formattedPrice;
+    
     __weak AYResultCollectionViewCell *weakCell = cell;
     
     NSURL *url = listing.mainImage.mediumURL;

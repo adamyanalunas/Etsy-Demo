@@ -8,6 +8,7 @@
 
 
 #import "AYListingImage.h"
+#import "AYShop.h"
 #import <Mantle/Mantle.h>
 
 
@@ -35,6 +36,7 @@ typedef NS_ENUM(NSInteger, AYListingStatus) {
 @property (nonatomic, assign) NSInteger listingID;
 @property (nonatomic, strong) AYListingImage *mainImage;
 @property (nonatomic, strong) NSString *price;
+@property (nonatomic, strong) AYShop *shop;
 @property (nonatomic, assign) AYListingStatus status;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) NSInteger userID;

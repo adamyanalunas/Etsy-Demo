@@ -9,6 +9,7 @@
 
 #import "AYListing.h"
 #import "AYListingCollection.h"
+#import "AYShop.h"
 #import <Mantle/Mantle.h>
 
 
@@ -51,6 +52,8 @@
 {
     NSError *error;
     AYListing *listing = [MTLJSONAdapter modelOfClass:AYListing.class fromJSONDictionary:data error:&error];
+    
+    listing.shop = [MTLJSONAdapter modelOfClass:AYShop.class fromJSONDictionary:data[@"Shop"] error:&error];
     
     return (!error ? listing : nil);
 }
