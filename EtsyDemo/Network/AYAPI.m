@@ -126,7 +126,7 @@
                              @"includes": includes
                              };
     
-    NSURLSessionDataTask *op = [self GET:[NSString stringWithFormat:@"listings/%i", listingID] parameters:params success:configuration.success failure:configuration.failure];
+    NSURLSessionDataTask *op = [self GET:[NSString stringWithFormat:@"listings/%lu", (unsigned long)listingID] parameters:params success:configuration.success failure:configuration.failure];
     
     return op;
 }
