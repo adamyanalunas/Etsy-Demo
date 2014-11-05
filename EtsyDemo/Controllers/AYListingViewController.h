@@ -12,12 +12,15 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AYListingViewController : UIViewController
+@interface AYListingViewController : UIViewController <UIScrollViewDelegate>
 
+
+@property (weak, nonatomic) IBOutlet UIScrollView *galleryScrollView;
 @property (nonatomic, strong) AYListing *listing;
 @property (weak, nonatomic) IBOutlet UIImageView *listingImageView;
 @property (weak, nonatomic) IBOutlet UILabel *listingNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *listingPriceLabel;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, strong) AYShop *shop;
 @property (weak, nonatomic) IBOutlet UILabel *shopNameLabel;
 

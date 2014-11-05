@@ -28,6 +28,7 @@
 		663E72BA1A00762900C2555F /* AYLoadingOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72B91A00762900C2555F /* AYLoadingOverlayViewController.m */; };
 		663E72C11A00794D00C2555F /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663E72C31A00794D00C2555F /* Loading.storyboard */; };
 		663E72CA1A00884800C2555F /* UIViewController+AYLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72C91A00884800C2555F /* UIViewController+AYLoading.m */; };
+		6671D8EF1A0A087F00CE9F63 /* AYListingImageCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6671D8EE1A0A087F00CE9F63 /* AYListingImageCollection.m */; };
 		85C49029342D28827D370CDC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26599E1CE45B3224FF16EA68 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		663E72C21A00794D00C2555F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Loading.storyboard; sourceTree = "<group>"; };
 		663E72C81A00884800C2555F /* UIViewController+AYLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AYLoading.h"; sourceTree = "<group>"; };
 		663E72C91A00884800C2555F /* UIViewController+AYLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AYLoading.m"; sourceTree = "<group>"; };
+		6671D8ED1A0A087F00CE9F63 /* AYListingImageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYListingImageCollection.h; sourceTree = "<group>"; };
+		6671D8EE1A0A087F00CE9F63 /* AYListingImageCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYListingImageCollection.m; sourceTree = "<group>"; };
 		BE63E86E39EF1B161B0AB1F5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +201,8 @@
 				663E72B119FF65E500C2555F /* AYListingCollection.m */,
 				663E72B319FF765200C2555F /* AYListingImage.h */,
 				663E72B419FF765200C2555F /* AYListingImage.m */,
+				6671D8ED1A0A087F00CE9F63 /* AYListingImageCollection.h */,
+				6671D8EE1A0A087F00CE9F63 /* AYListingImageCollection.m */,
 				663CEBDB1A0226C80031DD71 /* AYShop.h */,
 				663CEBDC1A0226C80031DD71 /* AYShop.m */,
 			);
@@ -416,6 +421,7 @@
 				663E72CA1A00884800C2555F /* UIViewController+AYLoading.m in Sources */,
 				663CEBD51A00C58C0031DD71 /* NSObject+AYDebounce.m in Sources */,
 				663E72A819FF563E00C2555F /* AYKit.m in Sources */,
+				6671D8EF1A0A087F00CE9F63 /* AYListingImageCollection.m in Sources */,
 				663E72BA1A00762900C2555F /* AYLoadingOverlayViewController.m in Sources */,
 				663CEBDD1A0226C80031DD71 /* AYShop.m in Sources */,
 				663E72B519FF765200C2555F /* AYListingImage.m in Sources */,

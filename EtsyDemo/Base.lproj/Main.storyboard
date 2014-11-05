@@ -166,12 +166,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8L-rg-UIi">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="o8L-rg-UIi">
+                                <rect key="frame" x="0.0" y="44" width="600" height="300"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="jii-ep-tHX"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Hkm-6Z-om4" id="eO8-ty-X7v"/>
+                                </connections>
                             </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="JWY-s2-sNh">
+                                <rect key="frame" x="280" y="307" width="39" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="Ioy-5H-LC1"/>
+                                </constraints>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="o8L-rg-UIi" firstAttribute="leading" secondItem="j3m-o9-GlC" secondAttribute="leadingMargin" constant="-16" id="BqW-PW-Zaa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="o8L-rg-UIi" secondAttribute="trailing" constant="-16" id="DIB-VL-9Vz"/>
+                            <constraint firstItem="o8L-rg-UIi" firstAttribute="top" secondItem="j3m-o9-GlC" secondAttribute="topMargin" constant="44" id="KCy-Sc-6cD"/>
+                            <constraint firstItem="JWY-s2-sNh" firstAttribute="centerX" secondItem="o8L-rg-UIi" secondAttribute="centerX" id="KTk-Qx-4nq"/>
+                            <constraint firstItem="JWY-s2-sNh" firstAttribute="leading" secondItem="j3m-o9-GlC" secondAttribute="leadingMargin" id="UMP-oc-ZBI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JWY-s2-sNh" secondAttribute="trailing" constant="265" id="pTT-hS-iZ3"/>
+                            <constraint firstItem="JWY-s2-sNh" firstAttribute="top" secondItem="o8L-rg-UIi" secondAttribute="bottom" constant="-37" id="teU-mR-IZ6"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UMP-oc-ZBI"/>
+                                <exclude reference="pTT-hS-iZ3"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="galleryScrollView" destination="o8L-rg-UIi" id="yZo-Yh-Nmx"/>
+                        <outlet property="pageControl" destination="JWY-s2-sNh" id="oij-Zh-cKB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HA0-BL-hPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

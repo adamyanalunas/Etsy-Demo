@@ -10,6 +10,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "AYAPI.h"
 #import "AYListingCollection.h"
+#import "AYListingImageCollection.h"
 #import "AYListingViewController.h"
 #import "AYShop.h"
 #import "UIViewController+AYLoading.h"
@@ -61,7 +62,7 @@
     self.listingNameLabel.text = [self listingName];
     self.listingPriceLabel.text = [self formattedListingPrice];
     
-    NSURL *url = self.listing.mainImage.fullURL;
+    NSURL *url = self.listing.mainImage.largeURL;
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     __weak typeof(self) weakSelf = self;
     [self.listingImageView setImageWithURLRequest:request
@@ -71,7 +72,45 @@
                                        weakSelf.listingImageView.image = image;
                                        [weakSelf.listingImageView setNeedsLayout];
                                    } failure:nil];
+    
+    self.pageControl.numberOfPages = self.listing.images.count;
+    self.pageControl.currentPage = 0;
+    
+    CGSize gallerySize = self.galleryScrollView.frame.size;
+    CGSize contentSize = {gallerySize.width * self.listing.images.count, 300};
+    self.galleryScrollView.contentSize = contentSize;
+    self.galleryScrollView.bounds = (CGRect){
+        .origin = {0, 0},
+        .size = contentSize
+    };
+    self.galleryScrollView.contentInset = UIEdgeInsetsZero;
+    for (int i=0; i<self.listing.images.count; i++)
+    {
+        CGFloat xOrigin = i * gallerySize.width;
+        UIImageView *imageView = [UIImageView.alloc initWithFrame:(CGRect){xOrigin,0, gallerySize.width, gallerySize.height}];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self.galleryScrollView addSubview:imageView];
+        
+        NSURL *url = ((AYListingImage *)self.listing.images[i]).largeURL;
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        __weak typeof(imageView) weakImageView = imageView;
+        [imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            __strong typeof(weakImageView) strongImageView = weakImageView;
+            strongImageView.image = image;
+        } failure:nil];
+    }
 }
+
+
+#pragma mark - UIScrollViewDelegate methods
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat pageWidth = self.galleryScrollView.frame.size.width;
+    float fractionalPage = self.galleryScrollView.contentOffset.x / pageWidth;
+    
+    self.pageControl.currentPage = lround(fractionalPage) % self.pageControl.numberOfPages;
+}
+
 
 
 #pragma mark - Helpers
@@ -103,6 +142,8 @@
         NSError *err;
         
         strongSelf.shop = [MTLJSONAdapter modelOfClass:AYShop.class fromJSONDictionary:[self shopDataFromResults:responseObject] error:&err];
+        AYListingImageCollection *imageCollection = [AYListingImageCollection imageCollectionFromResults:responseObject];
+        strongSelf.listing.images = imageCollection.images;
         
         [self setup];
         [self AYLoadingHide];

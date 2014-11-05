@@ -31,7 +31,7 @@
 #pragma mark - Parsing
 + (NSArray *)listingsFromResults:(NSDictionary *)results
 {
-    NSMutableArray *listings = @[].mutableCopy;
+    NSMutableArray *listings = [NSMutableArray array];
     for (NSDictionary *data in results)
     {
         AYListing *listing = [self.class listingFromResults:data];

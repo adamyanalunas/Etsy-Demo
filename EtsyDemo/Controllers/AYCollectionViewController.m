@@ -102,9 +102,6 @@
         [self.collectionView reloadData];
         [self AYLoadingHide];
         self.loading = NO;
-        
-        // TMP: Auto clicky tests!
-        [self collectionView:self.collectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     };
     
     AYAPIFailure failure = ^(NSURLSessionDataTask *task, NSError *error) {
