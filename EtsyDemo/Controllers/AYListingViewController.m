@@ -125,7 +125,8 @@
 - (NSDictionary *)shopDataFromResults:(NSDictionary *)results
 {
     // TODO: Wow. I wrote this and I'm impressed with how fragile it is.
-    return results[@"results"][0][@"Shop"];
+    NSArray *shops = results[@"results"];
+    return (shops.count ? shops[0][@"Shop"] : nil);
 }
 
 
