@@ -9,6 +9,7 @@
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "AYAPI.h"
+#import "AYListingCollection.h"
 #import "AYListingViewController.h"
 #import "AYShop.h"
 #import "UIViewController+AYLoading.h"
@@ -97,6 +98,7 @@
 {
     __weak typeof(self) weakSelf = self;
     AYAPISuccess success = ^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
         __strong typeof(weakSelf) strongSelf = weakSelf;
         NSError *err;
         

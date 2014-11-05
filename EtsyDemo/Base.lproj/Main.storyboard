@@ -166,56 +166,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c82-Od-Ngv">
-                                <rect key="frame" x="-4" y="64" width="608" height="72"/>
-                                <color key="backgroundColor" white="1" alpha="0.60999999999999999" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="cX0-o8-dhs"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listing Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPs-a7-UiH">
-                                <rect key="frame" x="16" y="72" width="568" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="0ja-2b-ve7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Shop Name Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jy-YH-clb">
-                                <rect key="frame" x="16" y="101" width="517" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="qPZ-7F-VId"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" directionalLockEnabled="YES" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8L-rg-UIi">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="c82-Od-Ngv" firstAttribute="top" secondItem="j3m-o9-GlC" secondAttribute="topMargin" constant="64" id="1kv-8a-0gO"/>
-                            <constraint firstItem="0Jy-YH-clb" firstAttribute="top" secondItem="yPs-a7-UiH" secondAttribute="bottom" constant="8" id="I7Q-3y-ydE"/>
-                            <constraint firstItem="c82-Od-Ngv" firstAttribute="leading" secondItem="j3m-o9-GlC" secondAttribute="leadingMargin" constant="-20" id="Qzj-lE-qJk"/>
-                            <constraint firstItem="0Jy-YH-clb" firstAttribute="top" secondItem="NIy-YB-FJY" secondAttribute="bottom" constant="8" id="THW-XW-Y6Z"/>
-                            <constraint firstItem="yPs-a7-UiH" firstAttribute="top" secondItem="NIy-YB-FJY" secondAttribute="bottom" constant="8" id="Vcg-hi-bfa"/>
-                            <constraint firstItem="0Jy-YH-clb" firstAttribute="leading" secondItem="j3m-o9-GlC" secondAttribute="leadingMargin" id="cdQ-OX-6NV"/>
-                            <constraint firstItem="yPs-a7-UiH" firstAttribute="leading" secondItem="j3m-o9-GlC" secondAttribute="leadingMargin" id="eaj-sv-FAW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yPs-a7-UiH" secondAttribute="trailing" id="hVC-f9-8NS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="c82-Od-Ngv" secondAttribute="trailing" constant="-20" id="l0E-bQ-4eP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0Jy-YH-clb" secondAttribute="trailing" id="qDA-gB-b0C"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="THW-XW-Y6Z"/>
-                                <exclude reference="qDA-gB-b0C"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <connections>
-                        <outlet property="listingNameLabel" destination="yPs-a7-UiH" id="kaq-HH-QAS"/>
-                        <outlet property="shopNameLabel" destination="0Jy-YH-clb" id="daf-dF-SBX"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HA0-BL-hPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
