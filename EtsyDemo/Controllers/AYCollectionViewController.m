@@ -225,6 +225,7 @@
 - (AYResultCollectionViewCell *)configureCell:(AYResultCollectionViewCell *)cell listing:(AYListing *)listing
 {
     cell.titleLabel.text = listing.title;
+    cell.priceLabel.text = listing.formattedPrice;
     __weak AYResultCollectionViewCell *weakCell = cell;
     
     NSURL *url = listing.mainImage.mediumURL;

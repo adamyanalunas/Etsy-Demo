@@ -11,6 +11,9 @@
 @interface AYResultCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *priceWidthConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *shopLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
