@@ -6,6 +6,7 @@
   Copyright (c) 2014 Adam Yanalunas. All rights reserved.
 */
 
+"etsy.search.placeholder" = "Search Etsy";
 "etsy.search.failure.title" = "Hold up!";
 "etsy.search.failure.message" = "There was a problem with your search.";
 

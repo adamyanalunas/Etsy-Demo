@@ -74,6 +74,7 @@
     _searchBar = UISearchBar.new;
     _searchBar.delegate = self;
     _searchBar.showsCancelButton = YES;
+    _searchBar.placeholder = NSLocalizedString(@"etsy.search.placeholder", @"Placeholder for search field");
     self.navigationItem.titleView = _searchBar;
     
     [self getRecent];
