@@ -45,6 +45,10 @@
     [super viewDidLoad];
     self.title = self.listing.title;
     
+    self.shopNameLabel.text = @"";
+    self.listingNameLabel.text = @"";
+    self.listingPriceLabel.text = @"";
+    
     [self loadListing:self.listing.listingID];
     [self AYLoadingSetup];
 }
