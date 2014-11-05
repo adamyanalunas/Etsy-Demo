@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *shopLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+- (CGSize)computedSize;
+
 @end

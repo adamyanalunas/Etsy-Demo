@@ -15,13 +15,15 @@
 #import "AYListingViewController.h"
 #import "AYLoadingOverlayViewController.h"
 #import "AYResultCollectionViewCell.h"
+#import <NHBalancedFlowLayout/NHBalancedFlowLayout.h>
 #import "NSObject+AYDebounce.h"
 
 
-@interface AYCollectionViewController ()
+@interface AYCollectionViewController () <NHBalancedFlowLayoutDelegate>
 
-@property (nonatomic, assign, getter=isSearching) BOOL searching;
+@property (nonatomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) NSArray *results;
+@property (nonatomic, assign, getter=isSearching) BOOL searching;
 
 - (NSString *)cellIdentifier;
 - (AYAPIRequestConfiguration *)requestConfigurationUsingOffset:(NSInteger)offset;
@@ -62,6 +64,8 @@
     self.loading = NO;
     self.batchSize = 30;
     self.searching = NO;
+    
+    self.images = NSMutableArray.array;
 }
 
 
@@ -192,6 +196,18 @@
     [self trendingWithOffset:0];
 }
 
+#pragma mark - UICollectionViewFlowLayoutDelegate
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(NHBalancedFlowLayout *)collectionViewLayout preferredSizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+//    AYResultCollectionViewCell *cell = (AYResultCollectionViewCell *)[self collectionView:self.collectionView cellForItemAtIndexPath:indexPath];
+//    NSLog(@"%@", NSStringFromCGSize(cell.computedSize));
+//    return cell.computedSize;
+    CGSize size = (self.images.count > indexPath.item ? [self.images[indexPath.item] size] : CGSizeZero);
+    NSLog(@"%@", NSStringFromCGSize(size));
+    return size;
+}
+
+
 #pragma mark - UICollectionViewDataSource methods
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -217,26 +233,30 @@
         [self requestNextBatch];
     }
     
-    [self configureCell:cell listing:self.results[indexPath.item]];
+    [self configureCell:cell indexPath:indexPath];
     
     return cell;
 }
 
 
-- (AYResultCollectionViewCell *)configureCell:(AYResultCollectionViewCell *)cell listing:(AYListing *)listing
+- (AYResultCollectionViewCell *)configureCell:(AYResultCollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath
 {
+    AYListing *listing = self.results[indexPath.item];
+    
     cell.titleLabel.text = listing.title;
     cell.shopLabel.text  = listing.shop.name;
     cell.priceLabel.text = listing.formattedPrice;
     
     __weak AYResultCollectionViewCell *weakCell = cell;
+    __weak typeof(self) weakSelf = self;
     
     NSURL *url = listing.mainImage.mediumURL;
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [cell.imageView setImageWithURLRequest:request
                           placeholderImage:nil
                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                       
+                                       __strong typeof(weakSelf) strongSelf = weakSelf;
+                                       [strongSelf.images addObject:image];
                                        weakCell.imageView.image = image;
                                        
                                    } failure:nil];

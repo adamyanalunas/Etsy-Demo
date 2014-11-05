@@ -14,14 +14,14 @@
 @class AYListing, AYResultCollectionViewCell;
 
 
-@interface AYCollectionViewController : UICollectionViewController
+@interface AYCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, assign) NSInteger batchSize;
 @property (nonatomic, copy) NSString *currentSearchTerm;
 @property (nonatomic, assign, getter=isLoading) BOOL loading;
 
 - (void)commonInit;
-- (AYResultCollectionViewCell *)configureCell:(AYResultCollectionViewCell *)cell listing:(AYListing *)listing;
+- (AYResultCollectionViewCell *)configureCell:(AYResultCollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath;
 - (void)getRecent;
 - (void)presentError:(NSError *)error;
 - (void)requestNextBatch;

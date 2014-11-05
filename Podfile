@@ -7,3 +7,4 @@ inhibit_all_warnings!
 pod 'AFNetworking', '~> 2.4'
 pod 'Masonry', '~> 0.5'
 pod 'Mantle', '~> 1.5'
+pod 'NHBalancedFlowLayout', '~> 0.2'

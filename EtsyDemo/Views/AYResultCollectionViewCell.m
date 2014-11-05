@@ -53,4 +53,10 @@
 }
 
 
+- (CGSize)computedSize
+{
+    return (CGSize){140, _imageView.image.size.height + 48};
+}
+
+
 @end

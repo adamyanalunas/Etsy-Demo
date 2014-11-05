@@ -24,15 +24,18 @@ PODS:
     - Mantle/extobjc
   - Mantle/extobjc (1.5.1)
   - Masonry (0.5.3)
+  - NHBalancedFlowLayout (0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.4)
   - Mantle (~> 1.5)
   - Masonry (~> 0.5)
+  - NHBalancedFlowLayout (~> 0.2)
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
+  NHBalancedFlowLayout: be3c297b54f74c27607aaa04563270ecbd2d8e38
 
 COCOAPODS: 0.34.4
