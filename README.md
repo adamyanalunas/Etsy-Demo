@@ -30,8 +30,8 @@ A app to demo features of the Etsy API.
 * Async image loading
   * Occasional crashers around AFNetworking's async image loader that I didn't debug. Fine for a demo. Laughably serious for prod code.
 * Fancy collection layouts
-  * `[waterfall_layout](https://github.com/adamyanalunas/Etsy-Demo/tree/waterfall_layout)` was an attempt at the Etsy/Pinterest/masonry-style layout
-  * `[springy_collection](https://github.com/adamyanalunas/Etsy-Demo/tree/springy_collection)` was an attempt at UIDynamics to jiggle the collection as you scroll up and down. Couldn't get past a bug that hid all cells except for last row after loading data from API.
+  * [waterfall_layout](https://github.com/adamyanalunas/Etsy-Demo/tree/waterfall_layout) was an attempt at the Etsy/Pinterest/masonry-style layout
+  * [springy_collection](https://github.com/adamyanalunas/Etsy-Demo/tree/springy_collection) was an attempt at UIDynamics to jiggle the collection as you scroll up and down. Couldn't get past a bug that hid all cells except for last row after loading data from API.
 
 ### Notes
 
