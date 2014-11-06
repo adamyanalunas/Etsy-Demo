@@ -81,7 +81,7 @@
     NSString *fields = [configuration.fields.allObjects componentsJoinedByString:@","] ?: @"listing_id,title,url,price";
     
     NSDictionary *params = @{
-                             @"api_key": configuration.apiKey,
+                             @"api_key"     : configuration.apiKey,
                              @"limit"       : configuration.limit,
                              @"offset"      : configuration.offset,
                              @"includes"    : includes,
