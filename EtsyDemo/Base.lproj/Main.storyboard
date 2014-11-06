@@ -182,6 +182,16 @@
                                     <constraint firstAttribute="height" constant="37" id="Ioy-5H-LC1"/>
                                 </constraints>
                             </pageControl>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DBu-oa-Hh1">
+                                <rect key="frame" x="0.0" y="352" width="600" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="xEs-pV-MNW"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -189,7 +199,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="o8L-rg-UIi" secondAttribute="trailing" constant="-16" id="DIB-VL-9Vz"/>
                             <constraint firstItem="o8L-rg-UIi" firstAttribute="top" secondItem="j3m-o9-GlC" secondAttribute="topMargin" constant="44" id="KCy-Sc-6cD"/>
                             <constraint firstItem="JWY-s2-sNh" firstAttribute="centerX" secondItem="o8L-rg-UIi" secondAttribute="centerX" id="KTk-Qx-4nq"/>
+                            <constraint firstItem="DBu-oa-Hh1" firstAttribute="leading" secondItem="j3m-o9-GlC" secondAttribute="leadingMargin" constant="-16" id="QPC-qb-bvz"/>
                             <constraint firstItem="JWY-s2-sNh" firstAttribute="leading" secondItem="j3m-o9-GlC" secondAttribute="leadingMargin" id="UMP-oc-ZBI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DBu-oa-Hh1" secondAttribute="trailing" constant="-16" id="eE3-Fm-1eN"/>
+                            <constraint firstItem="DBu-oa-Hh1" firstAttribute="top" secondItem="JWY-s2-sNh" secondAttribute="bottom" constant="8" id="f85-88-3yY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JWY-s2-sNh" secondAttribute="trailing" constant="265" id="pTT-hS-iZ3"/>
                             <constraint firstItem="JWY-s2-sNh" firstAttribute="top" secondItem="o8L-rg-UIi" secondAttribute="bottom" constant="-37" id="teU-mR-IZ6"/>
                         </constraints>
@@ -202,6 +215,7 @@
                     </view>
                     <connections>
                         <outlet property="galleryScrollView" destination="o8L-rg-UIi" id="yZo-Yh-Nmx"/>
+                        <outlet property="listingDescriptionTextField" destination="DBu-oa-Hh1" id="qUG-Ci-Btq"/>
                         <outlet property="pageControl" destination="JWY-s2-sNh" id="oij-Zh-cKB"/>
                     </connections>
                 </viewController>

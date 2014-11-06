@@ -19,7 +19,9 @@
 @interface AYListingViewController ()
 
 - (NSString *)formattedListingPrice;
+- (NSString *)listingDescription;
 - (NSString *)listingName;
+- (NSDictionary *)listingDataFromResults:(NSDictionary *)results;
 - (NSDictionary *)shopDataFromResults:(NSDictionary *)results;
 - (NSString *)shopName;
 
@@ -50,6 +52,7 @@
     self.shopNameLabel.text = @"";
     self.listingNameLabel.text = @"";
     self.listingPriceLabel.text = @"";
+    self.listingDescriptionTextField.text = @"";
     
     [self loadListing:self.listing.listingID];
     [self AYLoadingSetup];
@@ -61,6 +64,7 @@
     self.shopNameLabel.text = [self shopName];
     self.listingNameLabel.text = [self listingName];
     self.listingPriceLabel.text = [self formattedListingPrice];
+    self.listingDescriptionTextField.text = [self listingDescription];
     
     NSURL *url = self.listing.mainImage.largeURL;
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -76,6 +80,8 @@
     self.pageControl.numberOfPages = self.listing.images.count;
     self.pageControl.currentPage = 0;
     
+    // TODO: Cleanup
+    // TODO: Whaddaya think, good place for a bit of ReactiveCocoa? Yeah.
     CGSize gallerySize = self.galleryScrollView.frame.size;
     CGSize contentSize = {gallerySize.width * self.listing.images.count, 300};
     self.galleryScrollView.contentSize = contentSize;
@@ -114,6 +120,12 @@
 
 
 #pragma mark - Helpers
+- (NSString *)listingDescription
+{
+    return self.listing.listingDescription;
+}
+
+
 - (NSString *)formattedListingPrice
 {
     return self.listing.formattedPrice;
@@ -137,9 +149,10 @@
 {
     __weak typeof(self) weakSelf = self;
     AYAPISuccess success = ^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
         __strong typeof(weakSelf) strongSelf = weakSelf;
         NSError *err;
+        
+        strongSelf.listing = [MTLJSONAdapter modelOfClass:AYListing.class fromJSONDictionary:[self listingDataFromResults:responseObject] error:&err];
         
         strongSelf.shop = [MTLJSONAdapter modelOfClass:AYShop.class fromJSONDictionary:[self shopDataFromResults:responseObject] error:&err];
         AYListingImageCollection *imageCollection = [AYListingImageCollection imageCollectionFromResults:responseObject];
@@ -155,7 +168,7 @@
     };
     
     AYAPIRequestConfiguration *config = AYAPIRequestConfiguration.new;
-    config.includes = @[@"MainImage", @"Images", @"Shop", @"User"];
+    config.includes = [NSSet setWithObjects:@"MainImage", @"Images", @"Shop", @"User", nil];
     config.success = success;
     config.failure = failure;
     NSURLSessionDataTask *op = [AYAPI.supervisor listing:listingID configuration:config];
@@ -164,6 +177,13 @@
     {
         [self AYLoadingShow];
     }
+}
+
+
+- (NSDictionary *)listingDataFromResults:(NSDictionary *)results
+{
+    NSArray *listings = results[@"results"];
+    return (listings.count ? listings[0] : nil);
 }
 
 

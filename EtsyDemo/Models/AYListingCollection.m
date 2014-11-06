@@ -38,6 +38,7 @@
         if (!listings)
         {
             // TODO: Log error local or remote
+            NSLog(@"Couldn't transform into listing object: %@", data);
             break;
         }
         

@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, AYListingStatus) {
 @property (nonatomic, copy) NSString *listingDescription;
 @property (nonatomic, assign) NSInteger listingID;
 @property (nonatomic, strong) AYListingImage *mainImage;
-@property (nonatomic, strong) NSString *price;
+@property (nonatomic, copy) NSString *price;
 @property (nonatomic, strong) AYShop *shop;
 @property (nonatomic, assign) AYListingStatus status;
 @property (nonatomic, copy) NSString *title;
