@@ -29,6 +29,7 @@
 		663E72C11A00794D00C2555F /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663E72C31A00794D00C2555F /* Loading.storyboard */; };
 		663E72CA1A00884800C2555F /* UIViewController+AYLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E72C91A00884800C2555F /* UIViewController+AYLoading.m */; };
 		6671D8EF1A0A087F00CE9F63 /* AYListingImageCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6671D8EE1A0A087F00CE9F63 /* AYListingImageCollection.m */; };
+		6671D8F21A0B59D900CE9F63 /* AYFilterSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6671D8F11A0B59D900CE9F63 /* AYFilterSearchViewController.m */; };
 		85C49029342D28827D370CDC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26599E1CE45B3224FF16EA68 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,8 @@
 		663E72C91A00884800C2555F /* UIViewController+AYLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AYLoading.m"; sourceTree = "<group>"; };
 		6671D8ED1A0A087F00CE9F63 /* AYListingImageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYListingImageCollection.h; sourceTree = "<group>"; };
 		6671D8EE1A0A087F00CE9F63 /* AYListingImageCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYListingImageCollection.m; sourceTree = "<group>"; };
+		6671D8F01A0B59D900CE9F63 /* AYFilterSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYFilterSearchViewController.h; sourceTree = "<group>"; };
+		6671D8F11A0B59D900CE9F63 /* AYFilterSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYFilterSearchViewController.m; sourceTree = "<group>"; };
 		BE63E86E39EF1B161B0AB1F5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,6 +187,8 @@
 			children = (
 				66249E3319FF533E008DEC12 /* AYCollectionViewController.h */,
 				66249E3419FF533E008DEC12 /* AYCollectionViewController.m */,
+				6671D8F01A0B59D900CE9F63 /* AYFilterSearchViewController.h */,
+				6671D8F11A0B59D900CE9F63 /* AYFilterSearchViewController.m */,
 				663CEBD61A0215460031DD71 /* AYListingViewController.h */,
 				663CEBD71A0215460031DD71 /* AYListingViewController.m */,
 				663E72B81A00762900C2555F /* AYLoadingOverlayViewController.h */,
@@ -427,6 +432,7 @@
 				663E72B519FF765200C2555F /* AYListingImage.m in Sources */,
 				66249E0A19FF4EFF008DEC12 /* main.m in Sources */,
 				663CEBD81A0215460031DD71 /* AYListingViewController.m in Sources */,
+				6671D8F21A0B59D900CE9F63 /* AYFilterSearchViewController.m in Sources */,
 				663E72A519FF549400C2555F /* AYResultCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

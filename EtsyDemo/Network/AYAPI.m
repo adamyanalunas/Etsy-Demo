@@ -33,9 +33,17 @@
     self.offset = @0;
     self.includes = [NSSet setWithObjects:@"MainImage", nil];
     self.fields = [NSSet setWithObjects:@"listing_id", @"title", @"url", @"price", nil];
+    self.otherFields = [NSMutableDictionary dictionary];
     
     return self;
 }
+
+
+- (BOOL)hasAdditionalFields
+{
+    return self.otherFields.allKeys.count > 0;
+}
+
 
 @end
 
@@ -109,6 +117,13 @@
                              @"includes"    : includes,
                              @"fields"      : fields
                              };
+    
+    if (configuration.hasAdditionalFields)
+    {
+        NSMutableDictionary *addl = [NSMutableDictionary dictionaryWithDictionary:params];
+        [addl addEntriesFromDictionary:configuration.otherFields];
+        params = addl.copy;
+    }
     
     NSURLSessionDataTask *op = [self GET:@"listings/active" parameters:params success:configuration.success failure:configuration.failure];
     

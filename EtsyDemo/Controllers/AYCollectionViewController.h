@@ -7,6 +7,7 @@
 //
 
 
+#import "AYFilterSearchViewController.h"
 #import "UIViewController+AYLoading.h"
 #import <UIKit/UIKit.h>
 
@@ -31,11 +32,16 @@
 @end
 
 
-@interface AYCollectionViewController () <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface AYCollectionViewController () <UISearchDisplayDelegate, UISearchBarDelegate, AYFilterSearchDelegate>
 
+@property (nonatomic, strong) UIBarButtonItem *filterBarButton;
+@property (nonatomic, strong) UIPopoverController *filterPopover;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) NSArray *searchResults;
 
+- (void)filterButton:(id)sender;
+- (NSNumber *)minPriceLevel;
+- (NSNumber *)maxPriceLevel;
 - (void)searchCurrentTerm;
 
 @end

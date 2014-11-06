@@ -22,7 +22,10 @@ typedef void (^AYAPIFailure)(NSURLSessionDataTask *task, NSError *error);
 @property (nonatomic, copy) NSSet *keywords;
 @property (nonatomic, copy) NSNumber *limit;
 @property (nonatomic, copy) NSNumber *offset;
+@property (nonatomic, strong) NSMutableDictionary *otherFields;
 @property (nonatomic, copy) AYAPISuccess success;
+
+- (BOOL)hasAdditionalFields;
 
 @end
 

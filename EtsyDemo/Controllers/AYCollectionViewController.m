@@ -15,13 +15,16 @@
 #import "AYListingViewController.h"
 #import "AYLoadingOverlayViewController.h"
 #import "AYResultCollectionViewCell.h"
+#import <Masonry/Masonry.h>
 #import "NSObject+AYDebounce.h"
 
 
 @interface AYCollectionViewController ()
 
+@property (nonatomic, weak) AYFilterSearchViewController *filterVC;
 @property (nonatomic, assign, getter=isSearching) BOOL searching;
 @property (nonatomic, strong) NSArray *results;
+@property (nonatomic, assign) NSInteger priceFilterLevel;
 
 - (NSString *)cellIdentifier;
 - (AYAPIRequestConfiguration *)requestConfigurationUsingOffset:(NSInteger)offset;
@@ -62,6 +65,7 @@
     self.loading = NO;
     self.batchSize = 30;
     self.searching = NO;
+    self.priceFilterLevel = -1;
 }
 
 
@@ -71,11 +75,8 @@
     
 //    [self.collectionView registerClass:AYResultCollectionViewCell.class forCellWithReuseIdentifier:self.cellIdentifier];
     
-    _searchBar = UISearchBar.new;
-    _searchBar.delegate = self;
-    _searchBar.showsCancelButton = YES;
-    _searchBar.placeholder = NSLocalizedString(@"etsy.search.placeholder", @"Placeholder for search field");
-    self.navigationItem.titleView = _searchBar;
+    self.navigationItem.titleView = self.searchBar;
+    self.navigationItem.rightBarButtonItem = self.filterBarButton;
     
     [self getRecent];
 }
@@ -135,6 +136,12 @@
     }
     
     AYAPIRequestConfiguration *config = [self requestConfigurationUsingOffset:offset];
+    if (self.priceFilterLevel > -1)
+    {
+        config.otherFields[@"min_price"] = [self minPriceLevel];
+        config.otherFields[@"max_price"] = [self maxPriceLevel];
+    }
+    
     NSURLSessionDataTask *task = [AYAPI.supervisor search:term configuration:config];
     if (task)
     {
@@ -273,6 +280,88 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 }
 
 
+- (void)filterButton:(id)sender
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.filterVC = [sb instantiateViewControllerWithIdentifier:@"FilterViewID"];
+    self.filterVC.delegate = self;
+    
+    [self addChildViewController:self.filterVC];
+    [self.view addSubview:self.filterVC.view];
+    
+    self.filterVC.priceBracket.selectedSegmentIndex = self.priceFilterLevel;
+    
+    [self.filterVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.width.equalTo(@(self.filterVC.preferredContentSize.width));
+        make.height.equalTo(@(self.filterVC.preferredContentSize.width));
+    }];
+}
+
+
+- (NSNumber *)minPriceLevel
+{
+    NSNumber *price;
+    
+    switch (self.priceFilterLevel)
+    {
+        case -1:
+            price = @0;
+            break;
+            
+        case 0:
+            price = @0;
+            break;
+            
+        case 1:
+            price = @50.;
+            break;
+            
+        default:
+        case 2:
+            price = @300.;
+            break;
+    }
+    
+    return price;
+}
+
+
+- (NSNumber *)maxPriceLevel
+{
+    NSNumber *price;
+    
+    switch (self.priceFilterLevel)
+    {
+        case -1:
+            price = @0;
+            break;
+            
+        case 0:
+            price = @50.;
+            break;
+            
+        case 1:
+            price = @300.;
+            break;
+        
+        default:
+        case 2:
+            price = @9999.;
+            break;
+    }
+    
+    return price;
+}
+
+
+#pragma mark - AYFilterSearchDelegate methods
+- (void)filterSearch:(AYFilterSearchViewController *)filterViewController didChangePriceFilter:(UISegmentedControl *)priceFilter
+{
+    self.priceFilterLevel = priceFilter.selectedSegmentIndex;
+}
+
+
 #pragma mark - UISearchBarDelegate methods
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
@@ -309,5 +398,31 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
     
     return cellID;
 }
+
+
+#pragma mark - Properties
+- (UISearchBar *)searchBar
+{
+    if (_searchBar) return _searchBar;
+    
+    _searchBar = UISearchBar.new;
+    _searchBar.delegate = self;
+    _searchBar.showsCancelButton = YES;
+    _searchBar.placeholder = NSLocalizedString(@"etsy.search.placeholder", @"Placeholder for search field");
+    
+    return _searchBar;
+}
+
+
+- (UIBarButtonItem *)filterBarButton
+{
+    if (_filterBarButton) return _filterBarButton;
+    
+    NSString *title = NSLocalizedString(@"etsy.search.filter.button", @"Title for filter button");
+    _filterBarButton = [UIBarButtonItem.alloc initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(filterButton:)];
+    
+    return _filterBarButton;
+}
+
 
 @end

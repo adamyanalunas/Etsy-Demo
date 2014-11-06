@@ -10,4 +10,6 @@
 "etsy.search.failure.title" = "Hold up!";
 "etsy.search.failure.message" = "There was a problem with your search.";
 
+"etsy.search.filter.button" = "Filter";
+
 "etsy.button.dismiss" = "Dismiss";

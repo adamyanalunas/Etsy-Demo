@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.79607843137254897" green="0.3411764705882353" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.86666673421859741" green="0.41568630933761597" blue="0.14117647707462311" alpha="1" colorSpace="deviceRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="p7l-dc-7DN" kind="relationship" relationship="rootViewController" id="FIP-xq-sRk"/>
@@ -227,6 +227,101 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HA0-BL-hPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="805" y="786"/>
+        </scene>
+        <!--Filter-->
+        <scene sceneID="JXR-QK-J46">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewID" title="Filter" id="gTH-3K-reh" customClass="AYFilterSearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IIA-EQ-S8q"/>
+                        <viewControllerLayoutGuide type="bottom" id="j7Q-eK-5lc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Plk-G7-phd">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MpJ-Nv-IcG">
+                                <rect key="frame" x="16" y="0.0" width="218" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddT-Yb-6z3">
+                                        <rect key="frame" x="0.0" y="21" width="218" height="21"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Filter modal title"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.86666673419999996" green="0.4156863093" blue="0.1411764771" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="ddT-Yb-6z3" secondAttribute="centerX" id="7Tc-XT-9Iq"/>
+                                    <constraint firstAttribute="centerY" secondItem="ddT-Yb-6z3" secondAttribute="centerY" id="GKY-uN-emj"/>
+                                    <constraint firstAttribute="trailing" secondItem="ddT-Yb-6z3" secondAttribute="trailing" id="Iy0-zT-FN8"/>
+                                    <constraint firstAttribute="height" constant="64" id="Woy-uI-WSY"/>
+                                    <constraint firstItem="ddT-Yb-6z3" firstAttribute="leading" secondItem="MpJ-Nv-IcG" secondAttribute="leading" id="cFc-Jy-poK"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7Tc-XT-9Iq"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sFk-fv-idG">
+                                <rect key="frame" x="103" y="81" width="123" height="29"/>
+                                <segments>
+                                    <segment title="$"/>
+                                    <segment title="$$"/>
+                                    <segment title="$$$"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changePrice:" destination="gTH-3K-reh" eventType="valueChanged" id="NjV-d9-FIp"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QD-Pw-DAV">
+                                <rect key="frame" x="29" y="84" width="42" height="21"/>
+                                <accessibility key="accessibilityConfiguration" hint="Price filter title"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgo-45-atm">
+                                <rect key="frame" x="107" y="159" width="37" height="30"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.86666673419999996" green="0.4156863093" blue="0.1411764771" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goAwayPlease:" destination="gTH-3K-reh" eventType="touchUpInside" id="x8S-FY-VzO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.86666673419999996" green="0.4156863093" blue="0.1411764771" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="MpJ-Nv-IcG" firstAttribute="top" secondItem="Plk-G7-phd" secondAttribute="topMargin" id="8Hw-G9-hnq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MpJ-Nv-IcG" secondAttribute="trailing" id="HdC-Jz-0Xw"/>
+                            <constraint firstItem="MpJ-Nv-IcG" firstAttribute="leading" secondItem="Plk-G7-phd" secondAttribute="leadingMargin" id="St3-eS-HBG"/>
+                            <constraint firstItem="j7Q-eK-5lc" firstAttribute="top" secondItem="Rgo-45-atm" secondAttribute="bottom" constant="17" id="Zby-fJ-BXN"/>
+                            <constraint firstAttribute="centerX" secondItem="Rgo-45-atm" secondAttribute="centerX" id="dvc-cy-6fi"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Ls0-Eo-Ju9">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="sPv-rz-wGl">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="250"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="250"/>
+                    <connections>
+                        <outlet property="priceBracket" destination="sFk-fv-idG" id="abC-HK-2rA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ENI-wb-SpI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1266" y="611"/>
         </scene>
     </scenes>
 </document>
