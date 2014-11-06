@@ -113,7 +113,7 @@
     AYAPIRequestConfiguration *config = AYAPIRequestConfiguration.new;
     config.success = success;
     config.failure = failure;
-    config.includes = @[@"MainImage", @"Shop"];
+    config.includes = [NSSet setWithObjects:@"MainImage", @"Shop", nil];
     config.limit = @(self.batchSize);
     config.offset = @(offset);
     
@@ -257,18 +257,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 - (void)searchCurrentTerm
 {
     [self search:self.searchBar.text offset:0];
-}
-
-
-- (NSString *)searchCellIdentifier
-{
-    static NSString *cellID;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        cellID = @"AYResultCollectionViewSearchCellIdentifier";
-    });
-    
-    return cellID;
 }
 
 

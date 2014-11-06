@@ -16,10 +16,10 @@ typedef void (^AYAPIFailure)(NSURLSessionDataTask *task, NSError *error);
 
 @interface AYAPIRequestConfiguration : NSObject
 
-@property (nonatomic, copy) NSArray *includes;
+@property (nonatomic, copy) NSSet *includes;
 @property (nonatomic, copy) AYAPIFailure failure;
-@property (nonatomic, copy) NSArray *fields;
-@property (nonatomic, copy) NSArray *keywords;
+@property (nonatomic, copy) NSSet *fields;
+@property (nonatomic, copy) NSSet *keywords;
 @property (nonatomic, copy) NSNumber *limit;
 @property (nonatomic, copy) NSNumber *offset;
 @property (nonatomic, copy) AYAPISuccess success;

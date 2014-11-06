@@ -31,8 +31,8 @@
     
     self.limit = @25;
     self.offset = @0;
-    self.includes = @[@"MainImage"];
-    self.fields = @[@"listing_id", @"title", @"url", @"price"];
+    self.includes = [NSSet setWithObjects:@"MainImage", nil];
+    self.fields = [NSSet setWithObjects:@"listing_id", @"title", @"url", @"price", nil];
     
     return self;
 }
@@ -77,8 +77,8 @@
 #pragma mark - Endpoints
 - (NSURLSessionDataTask *)trendingWithConfiguration:(AYAPIRequestConfiguration *)configuration
 {
-    NSString *includes = [configuration.includes componentsJoinedByString:@","] ?: @"MainImage";
-    NSString *fields = [configuration.fields componentsJoinedByString:@","] ?: @"listing_id,title,url,price";
+    NSString *includes = [configuration.includes.allObjects componentsJoinedByString:@","] ?: @"MainImage";
+    NSString *fields = [configuration.fields.allObjects componentsJoinedByString:@","] ?: @"listing_id,title,url,price";
     
     NSDictionary *params = @{
                              @"api_key": configuration.apiKey,
@@ -98,8 +98,8 @@
     NSString *keywords = [self sanitizedSearchKeywords:term];
     if (!keywords.length || !configuration.success) return nil;
     
-    NSString *includes = [configuration.includes componentsJoinedByString:@","] ?: @"MainImage";
-    NSString *fields = [configuration.fields componentsJoinedByString:@","] ?: @"listing_id,title,url,price";
+    NSString *includes = [configuration.includes.allObjects componentsJoinedByString:@","] ?: @"MainImage";
+    NSString *fields = [configuration.fields.allObjects componentsJoinedByString:@","] ?: @"listing_id,title,url,price";
     
     NSDictionary *params = @{
                              @"api_key"     : configuration.apiKey,
@@ -120,7 +120,7 @@
 {
     if (!configuration.success) return nil;
     
-    NSString *includes = [configuration.includes componentsJoinedByString:@","];
+    NSString *includes = [configuration.includes.allObjects componentsJoinedByString:@","];
     NSDictionary *params = @{
                              @"api_key" : API_KEY,
                              @"includes": includes
