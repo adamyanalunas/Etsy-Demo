@@ -55,12 +55,14 @@
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a07-lm-Cwj">
                                             <rect key="frame" x="8" y="8" width="124" height="130"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Thumbnail of listing"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="130" id="FTb-ac-qTN"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48t-bQ-Dz6">
                                             <rect key="frame" x="12" y="142" width="116" height="22"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Listing title"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="gXT-7t-pIV"/>
                                             </constraints>
@@ -70,6 +72,7 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Shop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdU-5G-Mzt">
                                             <rect key="frame" x="12" y="164" width="30" height="20"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Listing shop name"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="uCb-kB-Ftx"/>
                                             </constraints>
@@ -79,6 +82,7 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixe-Qm-D6w">
                                             <rect key="frame" x="50" y="164" width="78" height="20"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Listing price"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="l6J-lb-al7"/>
                                                 <constraint firstAttribute="width" constant="38" id="n7g-yh-E5P"/>
@@ -185,6 +189,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DBu-oa-Hh1">
                                 <rect key="frame" x="0.0" y="352" width="600" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" hint="Listing description"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="xEs-pV-MNW"/>
                                 </constraints>
