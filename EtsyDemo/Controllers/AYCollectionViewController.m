@@ -245,6 +245,14 @@
 }
 
 
+#pragma mark - UICollectionViewDelegate methods
+- (void)collectionView:(UICollectionView *)collectionView
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.searchBar resignFirstResponder];
+}
+
+
 #pragma mark - Search
 - (void)searchCurrentTerm
 {
@@ -268,7 +276,12 @@
 {
     NSIndexPath *firstItem = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.collectionView scrollToItemAtIndexPath:firstItem atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    
     self.results = @[];
+    self.searching = NO;
+    self.searchBar.text = @"";
+    
+    [self.collectionView reloadData];
 }
 
 
@@ -282,10 +295,19 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    searchBar.text = @"";
     [searchBar resignFirstResponder];
+    
+    if (!self.isSearching) return;
+    
     [self resetSearch];
-    [self.collectionView reloadData];
+    [self getRecent];
+}
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self searchCurrentTerm];
+    [self.searchBar resignFirstResponder];
 }
 
 
